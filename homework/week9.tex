@@ -1,14 +1,17 @@
 % !TeX root = ../main.tex
 
-\section{Homework \#8 [2025-11-04]}
+\section{Homework \#9 [2025-11-04]}
 
 \begin{problem}
   Calculate the Landau parameters to leading order in $\lambda_{1,2}$ for a
   Fermi liquid with the contact interactions
   \begin{enumext}
-    \item
-    \item
-    \item
+    \item $V(x - x') = \lambda_1\delta^{(3)}(x - x')$.
+    \item $V(x - x') = -\lambda_2\nabla^2\delta^{(3)}(x - x')$
+          (so that $V(q) = \lambda_1 q^2$ in Fourier space).
+    \item Taking the results of (a) and (b) literally, sketch the regions of
+          the $\lambda_1$, $\lambda_2$ phase diagram where the Fermi surface
+          becomes unstable.
   \end{enumext}
 \end{problem}
 \begin{solution}
@@ -16,7 +19,51 @@
 \end{solution}
 
 \begin{problem}
-  
+  Test your understanding of Landau's mass renormalization formula by
+  generalizing it to include the effect of a magnetization. Suppose we introduce
+  a second vector potential into \eqref{6.86}
+  \begin{equation}
+    A(\theta) \underset{k\to0}\sim \int_{k_F-k\cos\theta}^{k_F} \d q
+    \frac{2\iu\pi a^2}{\omega - v_F(|\bm k + \bm q| - q)}
+  = \frac{2\iu\pi a^2k\cos\theta}{\omega - v_Fk\cos\theta}.
+    \tag{6.86} \label{6.86}
+  \end{equation}
+  that couples to the spin current, writing
+  \[
+    \mathcal H[\mathbf A_N, \mathbf W]
+  = \sum_\sigma \int \d^3x \frac1{2m} \psi_\sigma^\dagger(x)
+    [(-\iu\hbar\nabla - \mathbf A_N - \sigma\mathbf W)^2] \psi_\sigma(x)
+  + \hat V
+  \]
+  Whereas $\mathbf A_N$ couples to the current of particles, $\mathbf W$
+  couples to the ($z$ component of the) spin current.
+  Assume that $V$ conserves spin current.
+  \begin{enumext}
+    \item By comparing the bare shift of the energies
+    \[
+      \delta\epsilon_{\mathbf p\sigma}^{(0)}
+    = -\frac{\mathbf p}{m} \cdot (\mathbf A_N + \sigma \mathbf W)
+    \]
+    with the shift that result from interaction feedback,
+    \[
+      \delta\epsilon_{\mathbf p\sigma}
+    = -\frac{\mathbf p}{m^*} \cdot \mathbf A_N
+    - \sigma \frac{\mathbf p}{m_s^*} \cdot \mathbf W,
+    \]
+    show that there are two different mass renormalizations,
+    \begin{align*}
+      \frac{m}{m^*}   & = \frac1{1 + F_1^s},\\
+      \frac{m}{m_s^*} & = \frac1{1 + F_1^a}.
+    \end{align*}
+    \item Show that, when the Fermi liquid is polarized, the masses of the
+    ``up'' and ``down'' quasiparticles are now different, and given by
+    \[
+      \frac1{m_\sigma^*} = \frac1m\ab[\frac1{1 + F_1^s} + \frac M{1 + F_1^a}],
+      \quad (\sigma = \uparrow, \downarrow)
+    \]
+    where the magnetization $M = n_\uparrow - n_\downarrow$ is the difference of
+    ``up'' and ``down'' densities.
+  \end{enumext}
 \end{problem}
 \begin{solution}
   
