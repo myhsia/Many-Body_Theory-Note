@@ -1,6 +1,5 @@
 % Mingyu Xia (夏明宇, Westlake ID: 20251202247) Homework #i & #j
 \documentclass[11pt]{whatsnote}
-
 \RequirePackage[compat = 1.1.0]{tikz-feynhand}
 \setlength \feynhandblobsize {10mm}
 \usepackage[natbib, style = phys, biblabel = brackets, sorting = none]{biblatex}
@@ -11,7 +10,7 @@
   author  = \ttfamily \textsc{Mingyu Xia},
   afill   = PhD @Westlake University,
   date    = November 2025,
-  extinfo = {\includegraphics[width = .1\paperwidth]{myhsia_seal}},
+  extinfo = {\includegraphics[width = .1\paperwidth]{logos/myhsia_seal}},
   head    = string.pdf,
   clogo   = cat.pdf,
   llogos  = {mouse1.png, mouse2.png,
@@ -25,14 +24,14 @@
 \tableofcontents
 \mainmatter
 
-\input{chapter/1_.tex}
-\input{chapter/2_.tex}
-\input{chapter/3_.tex}
-\input{chapter/4_.tex}
-\input{chapter/5_.tex}
-\input{chapter/6_.tex}
-\input{chapter/7_.tex}
-\input{chapter/8_.tex}
+\include{chapter/1_.tex}
+\include{chapter/2_.tex}
+\include{chapter/3_.tex}
+\include{chapter/4_.tex}
+\include{chapter/5_.tex}
+\include{chapter/6_.tex}
+\include{chapter/7_.tex}
+\include{chapter/8_.tex}
 
 \printbibliography[title = {\refname\label{chap:bibliography}}]
 \newcommand \sectionname {Lecture \#}
@@ -44,22 +43,24 @@
 \addcontentsline{toc}{chapter}{Problem Set}
 \renewcommand *\thesection{\sectionname \arabic{section}}
 \newweek
-\input{homework/week1.tex}
+\include{chapter/week1_[2025-09-02]}
 \newweek
-\input{homework/week2.tex}
+\include{chapter/week2_[2025-09-09]}
 \newweek
-\input{homework/week3.tex}
+\include{chapter/week3_[2025-09-16]}
 \newweek
-\input{homework/week4.tex}
+\include{chapter/week4_[2025-09-23]}
 \newweek
-\input{homework/week5.tex}
+\include{chapter/week5_[2025-10-09]}
 \newweek
-\input{homework/week6.tex}
+\include{chapter/week6_[2025-10-16]}
 \newweek
-\input{homework/week7.tex}
+\include{chapter/week7_[2025-10-22]}
 \newweek
-\input{homework/week8.tex}
+\include{chapter/week8_[2025-10-28]}
 \newweek
-\input{homework/week9.tex}
+\include{chapter/week9_[2025-11-04]}
+\newweek
+\include{chapter/weeka_[2025-11-11]}
 
 \end{document}

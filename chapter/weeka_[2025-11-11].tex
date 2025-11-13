@@ -1,0 +1,113 @@
+% !TeX root = ../main.tex
+
+\section{Homework \#10 [2025-11-11]}
+
+\begin{problem}
+  Interpreting Fermi liquid via a Schrieffer-Wolff transformation.
+  We start from a translationally invariant, spin-1/2 fermion system
+  \[
+    \mathcal H = \mathcal H + \mathcal H_\text{int}
+  \]
+  where
+  \[
+    \mathcal H_0 = \sum_{k,\sigma} \epsilon_k c_{k\sigma}^\dagger c_{k\dagger},
+    \quad
+    \mathcal H_\text{int} = \frac1{2V} \sum_{k,k',q,\sigma,\sigma'} V_{q}
+      c_{k+q,\sigma}^\dagger c_{k'-q,\sigma'}^\dagger
+      c_{k'\sigma'} c_{k\sigma}.
+  \]
+  The Fermi sea $\ket|\text{FS}>$ is the ground state of $\mathcal H_0$,
+  with all states $|k| < k_F$ filled. We assume $V_q$ is weak and smooth
+  near $q = 0$.
+
+  To do canonical transformation for a Fermi liquid state, we want to integrate
+  out (cancel out) \textbf{off-shell} excitations. This is different from
+  previous cases, where the original interacting terms are canceled out
+  entirely. Instead, for a Fermi liquid state, We write $H_\text{int}$
+  schematically as
+  \[
+    \mathcal H_\text{int} = \mathcal H_\text{diag} + H_\text{off}
+  \]
+  where
+  \begin{itemize}
+    \item $\mathcal H_\text{diag}$ conserves the number of quasiparticles near
+    the Fermi surface (i.e., forward scattering, density-density type).
+    \item $\mathcal H_\text{off}$ mixes sectors with different numbers of
+    particle-hole pairs (e.g., it creates or destroys particle-hole pairs
+    relative to the Fermi sea).
+  \end{itemize}
+  Formally,
+  \[
+    \mathcal H_\text{diag} = \frac1{2V}
+      \sum_{\substack{k,k',q\\\text{both $k$, $k^\dagger q$ near $k_F$}}}
+      V_q c_{k+q}^\dagger c_{k'-q}^\dagger c_{k'} c_k,
+  \]
+  and $\mathcal H_\text{off}$ is the rest.
+  \paragraph{Such separation can be formally done via the semi-classical
+    variational method}
+  A simplified version is write
+  \[
+    \mathcal H_\text{diag} = \frac1{2V}
+      \sum_{\substack{k,k',q\\
+        \text{both $k = |k+q| = |k'-q| = |k'| = k_F$, $q\to0$}}}
+      V_q c_{k+q}^\dagger c_{k'-q}^\dagger c_{k'} c_k.
+  \]
+  So you can see $\mathcal H_\text{off}$ is just $\mathcal H_\text{int}$ with at
+  least one momentum that is away from the Fermi surface. We can just keep it in
+  the form of $\mathcal H_\text{int}$.
+
+  We choose $\mathcal S$ such that
+  \[
+    \mathcal H_\text{off} + [\mathcal S, \mathcal H_0] = 0.
+  \]
+  This means $\mathcal S$ is chosen to cancel the leading-order off-diagonal
+  part of $\mathcal H_\text{int}$ under the transformation.
+
+  Then the transformed Hamiltonian becomes
+  \[
+    \mathcal H' = \mathcal H_0 + \mathcal H_\text{diag}
+      + \frac12[\mathcal S, \mathcal H_\text{off}] + \mathcal O(V^3)
+  \]
+  where the new effective Hamiltonian is block-diagonal up to order $V^2$.
+
+  Constructing $\mathcal S$ explicitly.
+
+  The commutator $[\mathcal S, \mathcal H_0]$ acts as
+  \[
+    [\mathcal S, \mathcal H_0]
+  = \sum_{\alpha\beta} S_{\alpha\beta} (\epsilon_\alpha - \epsilon_\beta)
+    c_\alpha^\dagger c_\beta
+  \]
+  so to satisfy $[\mathcal S, \mathcal H_0] = -\mathcal H_\text{off}$,
+  we can write
+  \[
+    \mathcal S = \sum_{\alpha\beta}
+    \frac{(\mathcal H_\text{off})_{\alpha\beta}}
+      {\epsilon_\alpha - \epsilon_\beta}.
+  \]
+  This is the Schrieffer-Wolff generator, which mixes states differing in
+  unperturbed energy. For the present problem, $\mathcal S$ connects a bare
+  fermion state $c_{k\alpha}^\dagger \ket|\text{FS}>$ to configurations with one
+  additional particle-hole pair.
+  \paragraph{Now, answer the following questions.}
+  \begin{enumext}
+    \item Evaluate $[\mathcal S, c_{k\sigma}^\dagger]$;
+    \item Transforming the creation operator - “``ressing'' the bare fermion.
+    The transformed fermion creation operator is
+    \[
+      \tilde c_{k\sigma}^\dagger
+    = \upe^{\mathcal S} c_{k\sigma}^\dagger \upe^{-\mathcal S}
+    = c_{k\sigma}^\dagger + [\mathcal S, c_{k\sigma}^\dagger]
+    + \frac12[\mathcal S, [\mathcal S, c_{k\sigma}^\dagger]] + \cdots
+    \]
+    to the first order in $V$
+    \[
+      \tilde c_{k\sigma}^\dagger \approx c_{k\sigma}^\dagger
+    + [\mathcal S, c_{k\sigma}^\dagger] 
+    \]
+    \item Compute $\tilde c_{k\sigma}^\dagger \ket|\text{FS}>$.
+    \item Compute quasiparticle weight
+    $Z_k \equiv |\braket<\text{FS}|\tilde c_k\tilde c_k^\dagger|\text{FS}>|^2$
+    from canonical transformation.
+  \end{enumext}
+\end{problem}
