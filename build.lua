@@ -8,7 +8,7 @@ ctanzip          = module
 excludefiles     = {"*~"}
 suppdirs         = {"chapter", "media"}
 unpacksuppfiles  = {"*.bib"}
-textfiles        = {"*.md", "LICENSE", "*.lua", "makefile", "*.bat"}
+textfiles        = {"*.md", "LICENSE", "*.lua"}
 typesetexe       = "latexmk"
 typesetfiles     = {module .. ".tex"}
 typesetopts      = "-pdf -interaction=nonstopmode"
