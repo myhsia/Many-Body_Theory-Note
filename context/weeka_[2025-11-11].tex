@@ -1,6 +1,6 @@
 % !TeX root = ../main.tex
 
-\section{Homework \#10 [2025-11-11]}
+\section*{Homework \#10 [2025-11-11]}
 
 \begin{problem}
   Interpreting the Fermi liquid via a Schrieffer-Wolff transformation.
@@ -297,12 +297,9 @@
       \sum_{k,q,\sigma} \frac{V_{-q}\Phi(k',p,-q)}{2V}
       c_{p+q,\tau}^\dagger c_{k'-q,\sigma'}^\dagger c_{k'\sigma'},
     \]
-    where $\Phi(p,k',q) = \Phi(k',p,-q)$. Hence,
+    where $\Phi(p,k',q) = \Phi(k',p,-q)$. Combine the two terms, and restore the
+    indices $c_{p\tau}^\dagger \to c_{k\sigma}^\dagger$
     \[
-      [\mathcal S, c_{p\tau}^\dagger]
-    = \sum_{k',q,\sigma'} \frac{V_q + V_{-q}}{2V}
-      \frac{c_{p+q,\tau}^\dagger c_{k'-q,\sigma'}^\dagger c_{k'\sigma'}}
-        {\epsilon_{p+q} + \epsilon_{k'-q} - \epsilon_{p} - \epsilon_{k'}}, ~
       [\mathcal S, c_{k\sigma}^\dagger]
     = \sum_{k',q,\sigma'} \frac{V_q + V_{-q}}{2V}
       \frac{c_{k+q,\sigma}^\dagger c_{k'-q,\sigma'}^\dagger c_{k'\sigma'}}

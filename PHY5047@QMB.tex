@@ -1,5 +1,6 @@
 % Mingyu Xia (夏明宇, Westlake ID: 20251202247) Homework #i & #j
 \documentclass[11pt]{whatsnote}
+\let \qed \relax \setlength \FrameSep {6pt}
 \RequirePackage[compat = 1.1.0]{tikz-feynhand}
 \setlength \feynhandblobsize {10mm}
 \usepackage[natbib, style = phys, biblabel = brackets, sorting = none]{biblatex}
@@ -27,40 +28,34 @@
 \include{./context/1_.tex}
 \include{./context/2_.tex}
 \include{./context/3_.tex}
-\include{./context/4_.tex}
-\include{./context/5_.tex}
-\include{./context/6_.tex}
-\include{./context/7_.tex}
-\include{./context/8_.tex}
-
-\printbibliography[title = {\refname\label{chap:bibliography}}]
-\newcommand \sectionname {Lecture \#}
-\appendix
-\sidefoot \thepage
-\fancyhead[OL, ER]{Mingyu Xia (Westlake ID: 20251202247)}
-\fancyhead[EL]{\sffamily \rightmark}
-\fancyhead[OR]{\fontfamily{lmr}\selectfont<<\texttt{\href{mailto:xiamingyu@westlake.edu.cn}{xiamingyu@westlake.edu.cn}}>>}
-\addcontentsline{toc}{chapter}{Problem Set}
-\renewcommand *\thesection{\sectionname \arabic{section}}
 \newweek
 \include{./context/week1_[2025-09-02]}
+\include{./context/4_.tex}
 \newweek
 \include{./context/week2_[2025-09-09]}
 \newweek
 \include{./context/week3_[2025-09-16]}
+\include{./context/5_.tex}
 \newweek
 \include{./context/week4_[2025-09-23]}
 \newweek
 \include{./context/week5_[2025-10-09]}
+\include{./context/6_.tex}
 \newweek
 \include{./context/week6_[2025-10-16]}
 \newweek
 \include{./context/week7_[2025-10-22]}
 \newweek
 \include{./context/week8_[2025-10-28]}
+\include{./context/7_.tex}
 \newweek
 \include{./context/week9_[2025-11-04]}
+\include{./context/8_.tex}
+\include{./context/9_.tex}
 \newweek
 \include{./context/weeka_[2025-11-11]}
+\include{./context/10_.tex}
+
+\printbibliography[title = {\refname\label{chap:bibliography}}]
 
 \end{document}

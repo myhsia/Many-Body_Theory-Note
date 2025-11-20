@@ -1,3 +1,5 @@
+% !TeX root = ../main.tex
+
 \chapter{Landau Fermi Liquid Theory}
 
 To begin with
@@ -103,7 +105,7 @@ The two particles
 form the restrict scattering phase space, $\operatorname{Mod}(\bm q) = 0$.
 It is a narrow window, i.e., thine shell, near the fermi surface.
 
-\section{Change-neutral Fermi Liquid (With short range interaction: $\mathsf{\sim 1/r^6}$)}
+\section{Change-neutral Fermi Liquid (With short range interaction: $\mathtt{\sim 1/r^6}$)}
 
 \[
   \delta n_{p\sigma} = n_{p\sigma} - n_{p\sigma}^{(0)}
@@ -647,15 +649,15 @@ the disspresion relation of the collective eigenmode.
 
 \section{Non-equilibirum properties: linear response}
 
-Consider the time derivative to the number variable
+Consider the time derivative of the number variable
 \begin{equation}
-  \odv*{\delta n_p(\bm r, t)}t =
-  \begin{cases}
-    0, & \to \text{Collisionless limit}, T \to 0\\
-    \identity[\delta n_p], & \to \text{Collision integral:
-      Inelastic CMP scattering (decay), or interaction v.s. collision}
-  \end{cases}
+  \odv*{\delta n_p(\bm r, t)}t = 0 \qq{or} \identity[\delta n_p]
 \end{equation}
+\begin{enumext}
+  \item $\odv*{\delta n_p(\bm r, t)}t = 0$: Collisionless limit, $T \to 0$.
+  \item $\odv*{\delta n_p(\bm r, t)}t = \identity[\delta n_p]$: Collision
+  integral: Inelastic CMP scattering (decay), or interaction V.s. collision
+\end{enumext}
 
 \subsection{Inelastic quasi-particle scattering}
 
@@ -757,12 +759,12 @@ Which is about \emph{Differential geometry}
 \end{remark}
 
 The Fermi Golder rule
-\begin{equation}
+\begin{multline}
   I[\delta n_p] = \frac{2\pi}{\hbar} \sum_{2,3,4} |a(12; 34)|^2
-    [-n_1(1 - n_4)(1 - n_3)n_2 + (1 - n_1)(1-n_2)n_3n_4] (2\pi\hbar)^3
-    \delta(p_1 + p_2 - p_3 - p_4)
+    [-n_1(1 - n_4)(1 - n_3)n_2 + (1 - n_1)(1-n_2)n_3n_4] (2\pi\hbar)^3\\
+    \times \delta(p_1 + p_2 - p_3 - p_4)
     \delta(\epsilon_1 + \epsilon_2 - \epsilon_3 - \epsilon_4)
-\end{equation}
+\end{multline}
 where the counter is just counting the \emph{available states}.
 \begin{center}
   \begin{tikzpicture}
