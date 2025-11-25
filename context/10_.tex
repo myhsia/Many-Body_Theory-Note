@@ -410,3 +410,256 @@ These diagrams have $S = 2$.
   \]
   which cancels by ``All poss value-inv-transf'', for $v = \frac12$.
 \end{example}
+
+\section{Labeled Feynman Diagram}
+
+\[
+  \begin{tikzpicture}[baseline]
+    \draw [->] (-1,-1) node [left] {$c_\beta$} -- (0,0) -- (-1,1)
+     node [left] {$c_\alpha^\dagger$};
+    \draw [dashed] (0,0) -- (1,0);
+    \draw [->] (2,-1) node [right] {$c_\sigma$} -- (1,0) -- (2,1)
+     node [right] {$c_\gamma^\dagger$};
+  \end{tikzpicture}
+  \longrightarrow
+  \sum\text{Contraction} =
+  \sum_{\substack{\alpha\beta\\\gamma\sigma}}
+\]
+Permutation of all $b$ vectors,
+also to permute all the $m$-propagators: A factor of $2^nn!m!$.
+Satisfy the Symmetry
+\[
+  \wick{\braket<\c\alpha\c\beta|V|\c\gamma\c\sigma>
+= \braket<\beta\alpha|V|\sigma\gamma>} \to 2^nn!m!
+\]
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann9.jpeg}
+\end{center}
+
+\subsection{Wick theoremm: algebraic form of contraction}
+
+\[
+  \braket<\eta_0|T_\epsilon(1234 \cdots)|\eta_0>
+= \{\text{Total contraction}\} + N(12\cdots) + \sum_{``12''} N(3\cdots) ``12'' + \cdots
+\]
+For $4$ operators: $T_\epsilon \to g(12)g(34) + \xi g(13)g(24)$, give a counts relative $\eta$ sign.
+\subsection{Permutation counting}
+
+\[
+  2^nn!m! \to \text{perm identical progators}
+\]
+In QFT bosonic $\phi^4$-theory, it gives a huge counting $m!$ of propagator.
+\[
+  \to \frac1S, \qq{$S$ is symmetry factor.}
+\]
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann10.jpeg}
+\end{center}
+Invariant: restore to original diagram by geometric ratat reflact
+$\mathcal G:\ [\{1234\}, \{2143\}]$
+
+\subsection{Linked cluster theorem}
+
+\begin{equation}
+  \braket<\eta_0|U_\alpha(t,t')|\eta_0>
+= \exp\ab\{\sum_\nu^\text{connected} U(\Theta_v)\}
+\end{equation}
+where $v$ denotes the order of diagrams (\# of vertexes),
+$\Theta$ gives the structure (Topology) of the diagram.
+``Connected'' means the contractions which cannot be separated without cutting
+any line.
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann11.jpeg}
+\end{center}
+\begin{enumext}[columns = 3]
+  \item All contractions
+  \item All connected
+  \item All paths
+\end{enumext}
+So, the expression can be expanded
+\[
+  \braket<\eta_0|U|\eta_0>
+= \sum_\nu \frac1{\nu!} \braket<\eta_0|T_\epsilon\{V_1V_2\cdots V_\nu\}|\eta_0>
+\]
+All contractioins reducible
+\[
+  U(\Theta_\nu) = U^*(\Theta_{\nu_1}) U^*(\Theta_{\nu_2}) \cdots
+                  U^*(\Theta_{\nu_k})
+\]
+If inreducible / connected
+\[
+  U(\Theta_\nu) = U^*(\Theta_{\nu})
+\]
+\begin{example}
+  \[
+    U(\Theta) = U(\Theta_1)U(\Theta_2),\ \Theta_1 \neq \Theta_2
+  \]
+  If $\Theta_1 = \Theta_2$, $U(\Theta) = \frac1{2!} U(\Theta_1)U(\Theta_2)$.
+  An arbitrary diagram
+  \[
+    \Theta = p_1\Theta_1 + p_2\Theta_2 + \cdots + 2 \times p_n\Theta_n
+  \]
+  where $\Theta = 2\times ``8'' + ``O''$.
+  \[
+    U(\Theta) = \frac1{p_1!}(U(\Theta_1))^{p_1} \cdots
+                \frac1{p_n!}(U(\Theta_n))^{p_n}
+  \]
+  and the expactation
+  \begin{align*}
+    \braket<\eta_0|\cdots|\eta_0> = 1 + \sum_\Theta U(\Theta)
+& = 1 + \sum_{\Theta_1\Theta_2} U(\Theta_1) + U(\Theta_2) - U(\Theta_3)
+    \to \substack{\frac1{3!}U^{*^3}(\Theta_1)\\
+    \frac1{1!}\frac1{2!}U^*(\Theta_1)U^*(\Theta_2)\\U^*(\Theta_3)}\\
+& = 1 + \sum_1 U^*(\Theta_1)
+  + \sum_{1,1'} \frac1{2!} (U^*(\Theta_1), \cancel{U^*(\Theta_{1'})})
+    + \sum_2 U^*(\Theta_2) + \cdots\\
+& = 1 + \ab\{\sum_\nu U^*(\Theta_\nu)\}
+      + \frac1{2!} \underset{(\psi_1 + \psi_2)^2}{\ab\{
+        \underline{\sum_\nu U^*(\Theta_\nu)}\}}^2 + \cdots.
+  \end{align*}
+\end{example}
+
+\subsection{Prinpal theorem of connected diagrams}
+
+\begin{multline*}
+  \braket<E_0|T_\epsilon\{A^H(t)B^H(t')\}|E_0>
+= \lim_{\alpha\to0} \frac1{\braket<\eta_0|S_\alpha|\eta_0>}
+  \sum_{\nu=0}^\infty \frac1{2!}\ab(-\frac\iu\hbar)^\nu
+  \int_{-\infty}^{+\infty} \d t_1 \cdots \d t_\nu \upe^{-\alpha \cdots}\\ \times
+  \braket<\eta_0|\underset{\text{All contraction with external lines / legs}}
+    {\underline{T_\epsilon\{V_1\cdots V_\nu A^H(t)B^H(t')\}}}|\eta_0>
+\end{multline*}
+For zeroth order diagram
+\[
+  \begin{tikzpicture}
+    \draw [->] (0,0) node [below] {$c$} node [above] {$t$} -- (1,0);
+    \draw [->] (1,0) -- (2,0) node [below] {$c^\dagger$} node [above] {$t'$};
+  \end{tikzpicture}
+\]
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann12.jpeg}
+\end{center}
+
+\subsection{Principal theorems of connected diagrams}
+
+\begin{enumext}
+  \item ``Open'' diagrams: with external legs $U(p_\nu)$
+  \item ``Closed'' diagrams: no external legs.
+  \[
+    U(\Theta_\nu) = U(p_0) \exp\ab\{\sum_\gamma U^\dagger(\Theta_\nu)\}
+    \Rightarrow \ab(\sum_{p_0} U(p_0))
+    \exp\ab\{\sum_\gamma U^\dagger(\Theta_\nu)\}
+  \]
+  $\braket<\eta_0|S_\alpha|\eta_0>\big|_{\alpha\to0} \upe^{\iu\cdots/\alpha}$
+  cancels the Feynman diagram.
+\end{enumext}
+
+\subsection{Coleman replica trick via $\mathtt S$-matrix with source}
+
+\[
+  \ln S = \lim_{n\to} \ab(\frac{S^n - 1}{n})
+\]
+where $(S_i[\bar\alpha,\alpha])^n
+  = \ab(\braket<\eta_0|T_\epsilon\exp[-\iu\int\d t \sum V
+  + \underset{\alpha_{c^\dagger}c^\dagger + \bar\alpha_cc}
+      {\underline{\text{Source terms}}}]|\eta_0>)^n$. It can be expanded as
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann13.jpeg}
+\end{center}
+\[
+  \braket<\eta_0|U_\alpha|\eta_0>\big|_{\alpha\to0} = \upe^{\iu\cdots/\alpha},
+  \quad
+  \braket<\eta_0|U_\alpha(-T/\iu,T/\iu)|\eta_0> \propto \upe^{\iu\Delta ET}
+\]
+where $\Delta E = E_0 - E_0^{(0)}$.
+If we consider a finite $T$: Goldstone theorem (Fetter \& Welecka).
+\[
+  S[T] = \braket<\eta_0|U^\dagger(T/2) U^\dagger(-T/2)|\eta_0>
+\]
+The derivative
+\[
+  \pdv{S[T]}{T} = -\iu\Delta ES(T).
+\]
+
+\subsection{Feynman diagram in momentum space}
+
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann14.jpeg}
+\end{center}
+
+\subsection{Single particle Green's function}
+
+Diagrammatic expansion of Green's function
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann15.jpeg}
+\end{center}
+\[
+  \int \d q \braket<\eta_0|T_\epsilon(
+    \wick{\c2 c_{k_0}^\dagger(\omega) \c1 c_{k_0}(\omega') V_q
+          \c1 a_k^\dagger \c1 a_n \c1 a_l^\dagger \c2 a_m }
+  )>
+\]
+where $k - n = l - m = q$.
+\[
+  \wick{\c1 G^0(k_0,\omega) \c3\delta_{k_0,k} \c2 \delta_{k_0',m} \c1\delta_{nl}
+      \c3 G_0(\c2 k_n)}
+\]
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann16.jpeg}
+\end{center}
+Define the self-energy
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann17.jpeg}
+\end{center}
+Proper/ireducible =
+cannot be decomposed into independent (repeated lower order diagram)
+contribution by ``removal of one/single propagating ling''.
+Get the Green's function from Dyson equation from Feynman diagram way
+\[
+  G = \frac1{E - \epsilon_0 - \Sigma}
+\]
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann18.jpeg}
+\end{center}
+
+\section{Diagrammatic partial sums}
+
+\subsection{Polarization propagator}
+
+\begin{example}\leavevmode
+  \[
+    D_q(t,t') = \ab*<\braket<\rho_q(t);\rho_q^\dagger(t')>>
+  \]
+  where $\rho_q = \sum_{\sigma,k} a_k^\dagger a_{k+q}$,
+  $\rho_q^\dagger(t) = \rho_{-q}(t)$.
+  We can also have a singular bubble
+  $\chi_c = \ab*<\braket<S^z S^\dagger>>
+= -\braket<\rho_q(t)>\braket<\rho_q^\dagger(t')>$.
+\end{example}
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann19.jpeg}
+\end{center}
+By cutting vertex line
+\begin{enumext}[columns = 2]
+  \item Irreducible
+  \item Reducible
+\end{enumext}
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann20.jpeg}
+\end{center}
+\[
+  D_q(E) = \frac{\Lambda_q(E)}{1 - \Lambda_q(E) V(q)}, \quad
+  G = \frac{G^{0,c}}{1 - G^{0,c} \Sigma}
+\]
+Organizing principle, recursive structure.
+\[
+  U(t,t') = T_\epsilon \exp(-\frac\iu\hbar \int \d t' H(t'))
+\]
+Vertex function/convention.
+Skeleton diagram \texttt{<->}Schigon:
+\[
+  \iu\pdif t G = \delta + \braket<\Gamma c^\dagger c>.
+\]
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann21.jpeg}
+\end{center}
