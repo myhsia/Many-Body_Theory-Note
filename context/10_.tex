@@ -653,7 +653,7 @@ By cutting vertex line
 \]
 Organizing principle, recursive structure.
 \[
-  U(t,t') = T_\epsilon \exp(-\frac\iu\hbar \int \d t' H(t'))
+  U(t,t') = T_\epsilon \exp\ab(-\frac\iu\hbar \int \d t' H(t'))
 \]
 Vertex function/convention.
 Skeleton diagram \texttt{<->}Schigon:
@@ -663,3 +663,310 @@ Skeleton diagram \texttt{<->}Schigon:
 \begin{center}
   \includegraphics[width = \linewidth]{./media/feynmann21.jpeg}
 \end{center}
+
+\subsection{Partial resum}
+
+For Green functione $G$
+\[
+\]
+which gives us Dyson equation.
+\[
+  V_\text{eff}(q,E) = \frac{\nu(q)}{1 - \nu(q) \Omega_q(E)}
+  \qq{Dielectric function}
+\]
+Trieste, Fabrizio 2022.
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann22.jpeg}
+\end{center}
+The Feynman diagram can be expressed via exact $G$, etc. This is so-called the
+Skeleton diagram. One can use it to iteratively generate bare sequences.
+\paragraph{Skeleton diagram}
+Structure of exact solution algebraic relation.
+
+In QFT: scattering amplitudes recursive relations.
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann23.jpeg}
+\end{center}
+
+\subsection{Two-particle Green's functions \& correlation functions}
+
+\begin{multline*}
+  K_{\sigma_1\sigma_2\sigma_3\sigma_4}(\tau_1p_1,\tau_2p_2;\tau_3p_3,\tau_4p_4)
+= -\braket<\mathcal T_\tau(\wick{
+  \c4 c_{p_1\sigma_1}(\c2\tau_1)
+  \c1c_{p_2\sigma_2}(\c3\tau_2)
+  \c1c_{p_3\sigma_3}^\dagger(\c4\tau_3)
+  \c2 c_{p_4\sigma_4}^\dagger(\c3\tau_4)})>\\
+  \xlongequal0 -\delta_{\sigma_1\sigma_4} \delta_{\sigma_2\sigma_3} G_{14}G_{23}
+  + \delta_{\sigma_1\sigma_3} \delta_{\sigma_2\sigma_4} G_{13}G_{24}
+\end{multline*}
+The equation of motion becomes
+\[
+  \ab(\pdv*{}t - G_k)G_0(\tau', k) = \delta(\tau'), \quad
+  \ab(\pdv*{}t - G_k)G = \delta(\tau')
+- \frac1V \sum_{\bm p\bm q\alpha} U(\bm q)
+  \braket<T_\tau(
+    c_{p+q,\alpha}^\dagger(\tau') c_{p\alpha}(\tau')
+    c_{k+q}(\tau') c_{k\sigma}^\dagger
+  )>
+\]
+where $\delta H = \frac1{2V} \sum_{\substack{kpq\\\alpha\beta}} u(q)
+  c_{p_1\alpha}^\dagger c_{k+q,\beta}^\dagger c_{k\beta} c_{k+q,\alpha}$.
+Integrate over the EOM
+\begin{multline*}
+  \int \d\tau' G_0(\tau - \tau', k)
+    \ab(-\pdv*{}{\tau'} - \epsilon_k) G(\tau', k)\\
+= G_0(\tau, k) - \frac1V \sum u(q) \int \d\tau' G_0(\tau - \tau',k)
+  k_{0\alpha;\alpha\sigma}(\tau'k+q, \tau'p;\tau' + 0^+, p+q, 0k)
+\end{multline*}
+where $k$ can be expressed in diagram
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann24.jpeg}
+\end{center}
+or equation
+\begin{multline*}
+  k = -\delta_{14} \delta_{23} G_{14} G_{23}
+    + \delta_{13}\delta_{24} G_{13}G_{24}
+    + \int \prod_{i=1}^4 G(\tau_1 - \tau_1', p_1) G(\tau_2 - \tau_2', p_2)
+      \cdots \\
+      \Gamma(\tau_1' p_1', \tau_2'p_2^2,\cdots\tau_4'p_4')
+\end{multline*}
+The self energy
+\[
+  \Sigma(\iu\epsilon, k) = \frac1V \sum_{k'}(2U(0) - U(k - k'))U(k')
++ \frac1{V^2} \sum_{kq\sigma'} \tau^2 \sum_{\epsilon'\omega'} U(q)
+  G(\iu\epsilon + \iu\omega, k + q) G(\iu\epsilon', k)
+  \quad G \quad G \Gamma(\quad)
+\]
+can see that $\Sigma$ is a functional of $\Sigma(G, U)$, which can be
+represented by Feynman diagram.
+
+\subsection{Correlation functions}
+
+Momentum density operators
+\begin{align}
+  A(q) & = \sum \Lambda_0^A (k\alpha,k + q \beta)
+           c_{k,\alpha}^\dagger c_{k+q,\beta},\\
+  B(q) & = \sum_k \Lambda_0^B (k,\alpha; k + q, \beta)
+            c_{k\alpha}^\dagger c_{k+q,\beta}
+\end{align}
+We define the conductivity
+\[
+  \sigma:\ \bm E \to \braket<\bm j>,
+\]
+and define the current operator
+\[
+  \nabla \cdot {\bm j} = [\rho_n, H_0], \quad
+  j_x = \sum_{q, k} \pdif{k_x} \epsilon(\bm k) c_{k+q_x}^\dagger c_{\bm k}
+\]
+by the momentum along the $x$-direction.
+\begin{multline*}
+  \chi_{AB}(\tau, q) = -\frac1V \braket<T_\tau A(q,\tau) B(-q, 0)>
+= \frac1V \sum \Lambda_0^A \Lambda_0^B K
+= -\frac{\delta_{q,0}}{V} \braket<A(0)B(0)>\\ + \frac1V \sum_{k+\beta}
+    \Lambda_0^A \Lambda_q^B G(\tau, k + q) G(-\tau, k)
+  + \frac1V \sum \Lambda_v^A \Lambda_0^B
+  \int \prod{i=1}z_{i=1}^q \d\tau_i G \cdots G\Gamma(\quad)
+\end{multline*}
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann25.jpeg}
+\end{center}
+From $\bm E = 0^+$
+\[
+  \bm\sigma = \fdv*{\braket<\bm j>}{\bm E}
+= \fdv*{\braket<\sum_q \Lambda_0^A(c^\dagger c)>}{\bm E}
+= \fdv*{\sum_q \Lambda_0^n G[k + q, \cdots, ]G,\Sigma}{\bm E}
+= \Lambda_0 G \fdv*{\quad}E \to \Gamma
+\]
+Then, the electric field can be cuopled to the charge
+density $\bm E (\propto \mu: -\nabla\mu) \cdot e\hat n$.
+$\Lambda$ can be expressed as $1$ and vertex.
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann26.jpeg}
+\end{center}
+
+\subsection{Scwhinger's approach (variational / quantum action)}
+
+\[
+  \iu \pdif t G = \delta(t) + \braket<[H, C]^{(+)}; c^\dagger>
+= \delta(t) + \sum_{pq\alpha}
+  \braket<T_\tau(c_{p+q}^\dagger(t) c_p(t) c_{k+q}(t;c_{k\sigma}^\dagger))>
+\]
+where $\Lambda$ can be defined from functional derivative
+\[
+  \Lambda:\ \braket<\hat n_p c_k(t); c_k^\dagger(0)>
+= \fdv*{G^*(\quad;\nu_{n_p})}{\nu_{n_p}}\bigg|_{\nu\to 0}
+\]
+Adding to the original Hamiltonian
+\[
+  H^* = H_0 + \nu_{np} \hat n_p, \qq{Source field.}
+\]
+The Green function
+\[
+  \hat G = \frac1{\omega\identity - H}, \quad \hat G\hat G^{-1} = \identity
+\]
+So, the functional derivative
+\[
+  \fdv*{[\hat G\hat G^{-1}]}\nu = 0
+= \fdv G\nu \hat G^{-1} + \hat G\fdv{\hat G^{-1}}\nu
+\]
+from which we get
+\[
+  \fdv*G\nu
+= -\hat G\underset{\text{vertex function}}{\ab(\fdv*{\hat G^{-1}}\nu)} G
+\]
+Denote $\Lambda = -\fdv*{G^{-1}}\nu$
+\[
+  \iu\pdif t G = \delta(t) - G\Lambda G
+\]
+Then,
+\[
+  \underline{\iu \pdif t} G
+= \delta(t) + \braket<[H_0 + \delta H, c](t); c^\dagger>
+= \underset{\sim G_0^{-1}}{\underline{\delta(t) + \braket<[H, c]; c^\dagger>}} + u\fdv*G\nu
+\]
+From where we get
+\[
+  \iu \pdif t G_0 = \delta(t) + \epsilon_k \epsilon_0 \Rightarrow
+  G_0 = \delta(t)(i\pdif t - \epsilon)^{-1}
+  \Rightarrow \frac1{\omega - \epsilon_k}
+\]
+The inverse of $G_0$
+\[
+  G_0^{-1} = \omega - \epsilon_k \to \iu\pdif t - \epsilon_k
+\]
+satisfies
+\[
+  \omega\pdif tG = G_0^{-1} + UG\underset{\Lambda}{\ab(-\fdv*{G^{-1}}\nu)}G,
+  \quad (\omega\pdif t - UG\Lambda) G = G_0^{-1}
+\]
+Then,
+\[
+  -\nu_{n_p} + G_0^{-1} - UG\Lambda = G^{-1}, \quad
+  G^{-1} = G_0^{-1} - \nu - \Sigma, \quad \Sigma = UG + UG\Lambda.
+\]
+The first, second order functional derivative
+\[
+  -\fdv{G^{-1}}\nu = \Lambda \Rightarrow \Lambda
+= 1 + UG\Lambda G - U(G\Lambda G)\Lambda - UG\ab(\fdv\Lambda\nu)
+\]
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann27.jpeg}
+\end{center}
+\begin{multline*}
+  G[c,c^\dagger] \to \braket<c(t), c^\dagger> \to \qq{Skeleton diagram}
+  -\fdv*{G^{-1}}\nu \to \text{$\nu$ Dyson equation}, \\
+  G^{-1} = G_0^{-1} - \nu - (UG + UG\Lambda)
+\end{multline*}
+The functional derivative
+\[
+  -\fdv*{G^{-1}}\nu = \identity + U\ab(-\fdv*G\nu) + U(-\fdv*[fun]{G\Lambda}\nu)
+  \to U\ab[\ab(\fdv*G\nu)\Lambda - G\ab(\fdv*\Lambda\nu)]
+\]
+where $\fdv G\nu = -G\ab(\fdv*{G^{-1}}\nu) G$.
+For the second order functional derivative, expanding the part
+\[
+  \fdv*{\fdv*{G^{-1}}{\nu(t_2)}}{\nu(t_1)} \to
+  G\fdv*{}\nu \ab(\fdv*{G^{-1}}\nu)
+\]
+gives the diagram on the south west block.
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann28.jpeg}
+\end{center}
+Also: Negative spectral, magnon \texttt{<->} phonon, Ploavon.
+
+Very important is to apply symmetry to pertubation theory:
+Conserving application.
+
+\paragraph{Fermi liquid}
+
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann29.jpeg}
+\end{center}
+\[
+  G(\omega, k) = G_0(\omega, k) + 2G^2(\omega, k)
+    \ab(\frac1V \sum_{p\omega}) 2U(0) G(\omega',p)
+    - \frac1V \sum_{pu^2} G(\omega', p) U(k - p)
+\]
+The self energy
+\begin{multline*}
+  \Sigma(\omega, k) = -2U^2\frac1{V^2}
+    \sum_{\substack{k_1, p\\\omega_1,\epsilon_1}}
+  \frac1{\tilde \epsilon_1 - \epsilon_{k_1}}
+  \frac1{\omega_1 - \epsilon_{p_1}}
+  \frac1{\omega + \omega_1 - \epsilon_1 - \epsilon_{k^0}}\\
+= \frac{2U^2}{V^2} \sum_{k_0, k_1, p} \delta_{k+1_0} \delta_{k+p_1}
+  \frac1{\omega + \epsilon_{p_1} - \epsilon_{p_0} - \epsilon_{k_1}}
+  (1 - f(\epsilon_1) - f(\epsilon_{k_0}))
+\end{multline*}
+where $(f(\epsilon_{p_1} + b(\epsilon_{k_0} + \epsilon_{k_1})))$,
+$b(x + y) = \frac{f(x)f(y)}{1- f(x) - f(y)}$, and we can take
+\[
+  \Delta\omega = \omega_1 - \epsilon_1, \quad
+  \Delta p = p_1 - k_1.
+\]
+At finite temperatore, we can convert
+\[
+  \sum_\mu \frac1{\iu c_\mu - \epsilon}
+= \int \omega (f(\omega) \qq{or} b(\omega)) \cdot \frac1{\omega - \epsilon}
+\]
+To sum
+\begin{align*}
+  \sum_{\epsilon_1} \frac1{\epsilon_1 - \epsilon_{k_1}}
+    \frac1{\omega + \omega_1 - \epsilon_1 - \epsilon_{k_0}}
+& = \int \d\epsilon_1 [f(\epsilon_{k_1} \delta(\epsilon_1 - \epsilon_{k_1})
+    - (1 - f(\epsilon_{k_1}) \delta(\epsilon_1 - \epsilon_{k_1})))]
+  \frac1{\omega + \omega_1 - \epsilon_1 - \epsilon_{k_0}}\\
+& = \frac{f(\epsilon_{k_1})}{\omega + \omega_1 - \epsilon_1 - \epsilon_{k_0}}
+  - \frac{1 - f(\epsilon_{k_1})}
+      {\omega + \omega_1 - \epsilon_1 - \epsilon_{k_0}}
+\end{align*}
+where
+\[
+  \frac1{(\epsilon_1 - \epsilon_{k_1})
+    (\omega + \omega_1 - \epsilon_1 - \epsilon_{k_0})}
+= \ab(\frac 1{\epsilon_1 - \epsilon_{k_1}}
++ \frac 1{\omega + \omega_1 - \epsilon_1 - \epsilon_{k_0}})
+  \frac1{\omega + \omega_1 - \epsilon_{k_0} - \epsilon_{k_1}}
+\]
+where $\frac 1{\omega + \omega_1 - \epsilon_1 - \epsilon_{k_0}}$ get
+$f(\omega + \omega_1 - \epsilon_1)$.
+Finally,
+\[
+  \sum_{\epsilon_1} \frac1{\epsilon_1 - \epsilon_{k_1}}
+    \frac1{\omega + \omega_1 - \epsilon_1 - \epsilon_{k_0}}
+= -(1 - f(\epsilon_{k_1})) = f(\epsilon_{k_0})
+    \frac1{\omega + \omega_1 - \epsilon_{k_0} - \epsilon_{k_1}}
+\]
+Three momentums become three energy
+\begin{multline*}
+  \Im \Sigma(\omega, k) = -2\pi u^2 \rho_0^3 \int_0^\epsilon
+    \d\epsilon_0 \d\epsilon_1 \d\omega_1 S_k(\epsilon_0, \epsilon_1, \omega_1)
+    \delta(\epsilon - \omega_1 - \epsilon_1 - \epsilon_0)
+    (f(\omega_1) (1 - f(\epsilon_0))(1 - f(\epsilon_1)))\\
+    + (1 - f(\omega_0)) f(\epsilon_0) f(\epsilon_1)
+  \xlongequal{\epsilon \ll \epsilon_F}
+  -2\pi u^2 \rho_0^3 S_k(0,0,0) (\epsilon^2 + T^2)/2
+\end{multline*}
+Then
+\[
+  S_k(\epsilon_0, \epsilon_1, \omega_1)
+= \frac1{\rho_0^3} \frac1{V^2} \sum_{k_0k_1\beta_1}
+  \delta(\epsilon_0 - \epsilon_{k_0})
+  \delta(\epsilon_1 - \epsilon_{k_1}) \delta(\omega_1 - \epsilon_{p_0})
+  \delta_{k+p_1, k_0+k_1}
+\]
+So, the self-energy
+\[
+  \lim_{\substack{\epsilon\to0\\k\to0}}
+  \Im \Sigma(\epsilon, k) \sim
+  \begin{cases}
+    \epsilon^2, & d = 3,\\
+    \epsilon^2 \ln|\epsilon| \big|_{\epsilon \to 0 } \to 0, & d = 2,\\
+    -|\epsilon| \to \pdv\Sigma\epsilon\bigg|_{\epsilon \to -} \to \infty, &
+      d = 1
+  \end{cases}
+\]
+For 1D, we will have Luttinger liquid $z = 0$.
+The occupation number $f(k)$. The quasi-particle weight $Z$.
+The first derivative of $f(k)$ to $k$ would be continuous.
