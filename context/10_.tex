@@ -205,7 +205,7 @@ where we consider $\delta_{ij}$ as one-contruction, and $\ket|\eta_0>$ is the
 ground state.
 
 Underlying structure $N(\quad) \ket|\eta_0> = 0$ for Wick's theorem
-($\ket|\eta_0>$ Gaussion states).
+($\ket|\eta_0>$ Gaussian states).
 
 The canonical algebra
 \[
@@ -440,11 +440,13 @@ Satisfy the Symmetry
 
 \[
   \braket<\eta_0|T_\epsilon(1234 \cdots)|\eta_0>
-= \{\text{Total contraction}\} + N(12\cdots) + \sum_{``12''} N(3\cdots) ``12'' + \cdots
+= \{\text{Total contraction}\} + N(12\cdots)
++ \sum_{``12''} N(3\cdots) ``12'' + \cdots
 \]
-For $4$ operators: $T_\epsilon \to g(12)g(34) + \xi g(13)g(24)$, give a counts relative $\eta$ sign.
-\subsection{Permutation counting}
+For $4$ operators: $T_\epsilon \to g(12)g(34) + \xi g(13)g(24)$,
+give a counts relative $\eta$ sign.
 
+\subsection{Permutation counting}
 \[
   2^nn!m! \to \text{perm identical progators}
 \]
@@ -823,7 +825,8 @@ Then,
 \[
   \underline{\iu \pdif t} G
 = \delta(t) + \braket<[H_0 + \delta H, c](t); c^\dagger>
-= \underset{\sim G_0^{-1}}{\underline{\delta(t) + \braket<[H, c]; c^\dagger>}} + u\fdv*G\nu
+= \underset{\sim G_0^{-1}}
+    {\underline{\delta(t) + \braket<[H, c]; c^\dagger>}} + u\fdv*G\nu
 \]
 From where we get
 \[
@@ -970,3 +973,365 @@ So, the self-energy
 For 1D, we will have Luttinger liquid $z = 0$.
 The occupation number $f(k)$. The quasi-particle weight $Z$.
 The first derivative of $f(k)$ to $k$ would be continuous.
+
+\subsection{Luttinger-Ward functional (Fabigio)}
+
+``(Partial) Resum'' of Feynman diagram:
+It gives us functional ``structure'' between exact dynamical quotation:
+$G$, $\Lambda$, $\Gamma$.
+\begin{align*}
+  G:\ G & = \frac{G_0}{1 - \nu G_0 - G_0\Sigma}
+= \frac1{G_0^{-1} - \nu - \Sigma},\\
+  D:\ D & = \frac{A_0}{1 - \lambda D}
+\end{align*}
+In Feynman diagram language, we call it the \emph{Skeleton diagram}.
+\begin{center}
+  \includegraphics[width = \linewidth]{feynmann30.jpeg}
+\end{center}
+$G$ depends on $G$ and self-energy, and the self-energy depends on
+other quantities.
+The particle hole $\Gamma$
+\[
+  \Gamma:\ 
+\]
+The vertex function $\Lambda$
+\[
+  \Lambda:\ = \quad = \circ + \quad
+\]
+The self-energy in terms of vertex
+\[
+\]
+
+\paragraph{``Functional'' structure: revealed ``variation''}
+
+\begin{center}
+  \includegraphics[width = \linewidth]{feynmann31.jpeg}
+\end{center}
+Variation by source
+\[
+  G(3,2) \xlongrightarrow{\text{variation}} G(3,2) + \delta G(3,2)
+\]
+where $\delta G(3,2) = \cdots$.
+When the propagator is inside the self-energy, we will get the two-particle
+function $\Gamma$
+\[
+  \fdv{\Sigma(1,4)}{G(3,2)} = \Gamma^{p-h}, \quad
+  \fdv\Phi G = \Sigma.
+\]
+
+\subsection{Relation between differential functional}
+
+Starting from the generating functional (for Green function) with source $J$
+\begin{equation}
+  W[J] = \ln Z[J]; \quad
+  \ln S[J]
+\end{equation}
+we can obtain the Green function by
+\[
+  \fdv W{J(2,1)} = -G(1,2;J)
+\]
+We need to do a Legendre transform: Baym-Kadanoff.
+The idea is to switch $J$ to $G$
+\begin{equation}
+  J \to G:\ \Gamma[G] = W[J] - \Tr[JG], \quad
+  \fdv\Gamma G = -J\big|_{J\to0} = 0;
+  \Gamma[G] \to \Gamma_0[G] + \Phi[G]
+\end{equation}
+Essentially
+\[
+  \Phi[G,u] = -\frac12 (\quad) + \frac12 (\quad)
++ \frac14 (\quad) - \frac14(\quad)
+\]
+$G[G; \cdots; J]$ and $J[G, \cdots]$ the Gaussian state
+\[
+  Z = \int \mathcal D[a^\dagger, a]
+    \upe^{-\iu(A^\dagger HA - JA - J^\dagger A^\dagger)}
+  \Rightarrow \det[H]^{-\frac12} J(H)^{-1} J^\dagger, \quad
+  G \propto \frac1{\omega - H}, \quad J(G)
+\]
+\begin{center}
+  \includegraphics[width = \linewidth]{feynmann32.jpeg}
+\end{center}
+Recall the self-energy itself, follows
+\[
+  \Sigma(3,2) = UG(3,2) + U G(2,3') \Lambda_3^{3'}, \quad
+  \ab(-\fdv{G^{-1}}\nu) = \Lambda
+\]
+where $\Lambda \Leftrightarrow \Gamma$, $\delta\Lambda \sim \Gamma + G$.
+We can also define the strong-coupling Green function $\tilde G_0$.
+
+\section{Application: Interacting electron gas}
+
+\subsection{Hartree-Fock energy}
+
+\[
+  E_g = E_0 + \iu V[-\quad - \quad]
+\]
+\begin{center}
+  \includegraphics[width = \linewidth]{feynmann33.jpeg}
+\end{center}
+\begin{multline*}
+  \Delta E_\text{HF}
+= \frac{\iu V}{2} \int \frac{\d^3k\d^3k' \d\omega \d\omega'}{(2\pi)^6 (2\pi)^2}
+  \times
+  (-(2s + 1)^2 \iu V(q=0) \delta(k - k') -(2s + 1) \iu V_{k-k'})
+  G(k) G(k')\\
+= \frac V2\int \frac{\d^3k \d^3k'}{(2\pi)^6} ((2s + 1)^2 - (2s+1)V_{k-k'})
+  f_k f_{k'}.
+\end{multline*}
+where $q = k - k'$. Finally, we get the result
+\[
+  \frac{E_g}{V}
+= \rho\ab(\frac35\epsilon_F - \frac{3}{4\pi} \frac{e^2k_F}{4\pi\epsilon_0})
+\]
+The density of electrons
+\[
+  \rho = \frac{(2s + 1)k_F^3}{(6\pi^2)}
+\]
+Separation between electrons: $R_e$, $\frac{4\pi}{3}R_e^3 = \rho^{-1}$.
+\[
+  a_B = \frac{\hbar^24\pi\epsilon_0}{me^2}
+\]
+denotes the dimentionless separation,
+$r_s = \frac{1}{\alpha k_Fa_B} = \frac{R_e}{a_B}$.
+\[
+  \frac{E}{\rho V}
+= \frac35 \frac{R_x}{\alpha^2 r_s^2} \ab(1 - \frac{5}{2\pi}\alpha r_s)
+\]
+reach the strongly correlated limit, which is actually the dilute limit.
+Here $R_y = \frac{\hbar^2}{2ma_B^2} \approx \qty{13.6}\eV \propto r_s$.
+
+\subsection{Electrons in scattering potentials}
+
+\[
+  H = \sum \epsilon_k c_k^\dagger c_k + H_\text{sc}
+\]
+where
+\[
+  H_\text{sc} = \int \d x^3 V(x) \psi^\dagger(x) \psi(x)
+= \int_{kk'} \d k \d k' U_{kk'} c_k^\dagger c_{k'}, \quad
+  V(x) = \int \d q V(q) \upe^{\iu qx}
+\]
+$G_0(r)$ can be expressed in terms of the Feynman diagram.
+\begin{center}
+  \includegraphics[width = \linewidth]{feynmann34.jpeg}
+\end{center}
+where
+$G(k,k';\omega) = \delta_{kk'} G^0(k,\omega)
+  + G^0(k,\omega) t_{kk'}(\omega) G^0(k',\omega)$
+\[
+  t_{kk'}(\omega) = u_{k-k'} + \sum_{k''} U_{k-k'} G^0(k'',\omega)
+  t_{k'',k'}(\omega), \quad
+  U(x) = U\delta(x) \Rightarrow U(q) = U
+\]
+Then
+\[
+  t(\omega) = U + U\sum_{k''} G^0(k'',\omega) \tau(\omega)
+= \frac{U}{1 - UF(\omega)}
+\]
+$F(\omega)
+= \int \frac{d^dp}{(2\pi)^d} \frac1{\omega - \epsilon_k + \iu\delta_k}
+  \Rightarrow G(x,x;\omega)$.
+Quasiparticle interference (QPI).
+\[
+  G(k,\omega) = G^0 + G^0t(\omega)G^0, \quad
+  F(\omega) = G(x - x = 0; \omega)
+= \Re[G^0(0,\omega)] + \iu\Im[G^0[0,\omega]]
+\]
+Do the Fourier transformation
+\[
+  G(k,\omega) = G^0 + G^0t(\omega)G^0, \quad
+  F(\omega) = G(x - x = 0; \omega)
+= \Re[G(0;\omega)]/\Im(G,\cdots)
+\]
+\begin{center}
+  \includegraphics[width = \linewidth]{feynmann35.jpeg}
+\end{center}
+Inside the gap, the imaginary part vanishes.
+\[
+  t(\omega) = \frac{U}{1 - U(\Re G(0 + \cancel{\iu\Im G(0)}))}, \quad
+  1 - U\Re G(0;\omega_0) = 0
+\]
+means $t(\omega)$ has a pole: it is a long-lifetime excitation.
+\[
+  H_\text{sc} = \sum_{x_\text{imp}} U_{x_\text{imp}} \delta(x_\text{imp})
+\]
+is Anderson localization.
+
+\subsection{Hartree-Fock self-energy}
+
+\[
+  G(k,\omega) = \frac{1}{\omega - \epsilon_k \Sigma(k, \omega)}
+\]
+The self energy
+\[
+  \Sigma_\text{HF}(p,\omega) = \quad
+= \int\frac{\d^3p}{(2\pi)^3} ((\omega + 1)V(q=0) - V_{pp'}) f(\epsilon_{p'}^*)
+\]
+where $\epsilon_{p'}^* = \epsilon_{p} + \Sigma_\text{HF}(p)$,
+$G(p) = \frac{1}{\omega - \epsilon_p^* + \iu\Gamma(\epsilon^2 + T^2)}$.
+\[
+  \frac{p}{m^*} = \nabla_p \epsilon_p^* = \frac{p}{m}
++ \nabla_p \sum_\text{HF}(p) = \frac{p}{m} + \frac1{m^*}
+  \int \d p' V(p - p') \delta(\epsilon_p^*)
+\]
+The derivative
+\[
+  \nabla_p \Sigma_\text{HF}(p)
+= -\int \d p' \nabla_p V_{p-p'} f_{p'}
+= +\int \d p' \nabla_{p'} V_{p-p'} f_{p'}
+= \int \d p' V_{p-p'} \delta(\epsilon_{p'}^*) \pdv{\epsilon_{p'}^*}{p'}
+\]
+where
+\[
+  \frac{p}{m^*} = \frac pm - \frac{p_F}{m^*} \frac{F_1^s}{3}
+  \Rightarrow \frac{m^*}{m} = 1 + \frac{F^s}{3}
+\]
+\begin{center}
+  \includegraphics[width = \linewidth]{feynmann36.jpeg}
+\end{center}
+
+\subsection{Response functions}
+
+\[
+  H(t) = H_0 + H_s(t), \quad H_s(t) = -\hat A(t) f(t) \to 0^+
+\]
+\begin{example}
+  \begin{enumext}
+    \item Ext magnetic field
+    \[
+      H_s = -\mu_B \int \d x^3 \bm\sigma(x) \cdot \bm B(x,t)
+    \]
+    which is only the Zeeman term, the minimal coupling
+    \[
+      c_i^\dagger \upe^{\iu\bm A_{ij}\Delta_ij} c_j
+    \]
+    and the total flux $\bm B = \nabla \times \bm A$.
+    \item External electric potential
+    \[
+      H_s = -\int \d^3 x \underset{\sim \eta(x)}{\rho(x)} \Phi(x,t)
+    \]
+    where
+    \[
+      U(t) = T\exp[-\iu\int H_s(t') \d t'] \big|_{f(t) \to 0^+}
+    \]
+    The operator $A$ under Heisenberg picture can be expanded as
+    \[
+      \tilde A_H(t) \cong A(t) - \iu \int_{-\infty}^{+t}
+        [\tilde A(t), H_s(t')] \d t' + O(H_s^2)
+    \]
+    The measurement
+    \[
+      \braket<\tilde A_H(t)>
+    = \braket<\phi|\tilde A(t)|\phi>
+    - \iu \int \braket<\phi|[\tilde A, H_s(t)]|\phi>
+    = \int_{-\infty}^{+\infty} \d t' \chi_{AA}(t - t') f(t') \d t'
+    \]
+    \[
+      \chi(t - t') = \iu\theta(t - t') \braket<\phi|[\tilde A(t), A(t')]|\phi>
+      \to
+      \chi^T(1,2) = (-\iu)^2 \braket<\phi|T(\tilde A(1), A(2))|\phi>
+    \]
+  \end{enumext}
+\end{example}
+
+\subsection{Magnetic susceptibility of non-Interacting electrons}
+
+The variation of magnetic momentum
+\[
+  \delta\bm M(\bm x) (\propto\delta(x)) = \chi_s(\bm x) B,
+\]
+the potential is $H_s(t) = \delta(0) B \sigma^B$.
+What we want to compute is the magnetization
+\[
+  \braket<\sigma^a(x)> = \bm M(x) = \int \d^4 x' \chi(x - x') \bm B(\bm x'),
+\]
+according to the response function.
+The response of the system of $a$ and $b$ directions
+\[
+  \chi_{ab} = \iu\braket<\phi|[\hat\sigma^a(x), \hat\sigma^b(0)]|\phi>
+\]
+The spin operator
+\[
+  \hat \sigma^a = \hat c_\alpha^\dagger \sigma_{\alpha\beta}^a \hat c_\beta,
+  \quad
+  \sigma^z = c_\uparrow^\dagger c_\uparrow - c_\downarrow c_\downarrow, \quad
+  \sigma_x = \begin{pmatrix}
+    0 & 1\\1 & 0
+  \end{pmatrix}
+= c_\uparrow^\dagger c_\downarrow + c_\downarrow^\dagger c_\uparrow, \quad
+  \sigma_y = \begin{pmatrix}
+    & -\iu\\\iu
+  \end{pmatrix}
+= \iu(c_\uparrow^\dagger c_\downarrow + c_\downarrow^\dagger )
+\]
+\begin{paracol}{2}
+Due to the Foruier transform $\chi(q) = \int \d x \chi\omega \upe^{\iu qx}$
+\[
+  \chi_{ab}^T(q) = -\mu_B^2 \int \frac{\d \omega \d^d k}{(2\pi)^{d+1}}
+    \Tr[\sigma^a G(k + q) \sigma^b G(k)] \propto 2\delta^{ab} G(k + q) G(k)
+\]
+where $\Tr(\sigma^a\sigma^b) = 2\delta^{ab}$.
+
+One can see that $\Tr(\sigma^z \sigma^z) = 1$, $\Tr(\sigma^x\sigma^z) = 0$.
+\switchcolumn \centering
+\begin{tikzpicture}
+  \draw [->] (0,0) node [left] {$\sigma^b$} to [bend left = 40] (2,0)
+   node [above] at (.5,.5) {$\sigma$}
+   node [above] at (1.5,.5) {$\sigma$}
+   node [right] {$\sigma^a$};
+  \draw [->] (2,0) to[bend left = 40] (0,0)
+   node [below] at (1.5,-.5) {$\sigma'$}
+   node [below] at (.5,-.5) {$\sigma'$};
+\end{tikzpicture}
+\end{paracol}
+\begin{multline*}
+  \chi_{ab}^T(q) = \delta^{ab}(-2\mu_B^2)
+  \int \frac{\d^3k\d v}{(2\pi)^3(2\pi)}
+  \frac{1}{\omega + v -\epsilon_{k+q}}
+  \frac{1}{\omega - \epsilon_k}\\
+= \delta^{ab} (-2\mu_B^2) \int \frac{\d\omega \d^3k}{(2\pi)^4}
+  \frac1{\epsilon_{k+q} - \epsilon_k - \nu}
+  \ab(
+    \frac{1}{\omega + \nu - \epsilon_{k+q} + \iu\delta\sgn(\epsilon_{k+q})}
+  - \frac{1}{\omega - \epsilon_k})
+\end{multline*}
+The retard one
+\[
+  \lambda = \delta^{ab}(-2\mu_B^2) \int \frac{\d^3k}{(2\pi)^3}
+  \frac{f_{k+q} - f_k}{(\epsilon_{k+q} - \epsilon_k) - \nu}
+= \chi_{ab}(q, \nu + \iu\delta)
+\]
+From the Linhard function, one can get
+\[
+  \chi_{ab}(q, \nu \to 0)
+= 2\mu_B^2 N(0) F\ab(\frac{q}{2k_F})
+\]
+where
+\[
+  F(x) = \frac1{4x}(1 - x^2)
+  \ln\ab|\frac{1 + x}{1 - x}| + \frac12
+\]
+
+\section{The RPA (Large-$N$) Electron Gas}
+
+Random phase Approximation.
+Try to select the Feynman diagrams in a ssytem,
+one with NO natural small parameters. This is what we call ``large-$N$''.
+For one the
+\begin{enumext}
+  \item Spatial dimension $N \geq 4$: mean field limit.
+  For another: DMFT.
+  \item $N = 2S + 1 = K(2S + 1)$: spin-component-orbital
+  \item Spin system: Large-$S$ limit.
+  \item QCD: color - $N$.
+\end{enumext}
+\[
+  H = \sum_{k\sigma} \epsilon_k c_{k\sigma}^\dagger c_{k\sigma}
++ \frac12 \sum V_q c_\sigma^\dagger c_{\sigma'}^\dagger c_{\sigma'} c_\sigma
+\propto N
+\]
+where $V_q = \frac1NV_q$ for $N \to \infty$.
+\begin{center}
+  \includegraphics[width = \linewidth]{./media/feynmann37.jpeg}
+\end{center}
