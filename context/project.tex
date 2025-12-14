@@ -1,0 +1,154 @@
+% !TeX root = ../main.tex
+
+There are TWO research topics/problems below, all of which are problems of
+interests to me recently. Choose at least one of the problems and apply what you
+learned in class and try to make some progress. You are welcome to do literature
+research if necessary.
+
+\section*{Final Project [DUE DATE: 2026-01-06 Tue]}
+
+Grading Criteria: Finishing the \textbf{Minimal} parts guarantees 85\% points.
+With 1 step solved in \textbf{Advanced} part, you get the rest. Beyond that, you
+get bonuses.
+
+\begin{problem}
+  Consider the following two band/orbital Hubbard models at quarter filling on
+  2D lattice.
+  \begin{multline*}
+    \mathcal H
+  = \sum_{ij,\sigma} \sum_{m=1}^2 t_{ij}
+    c_{i,\sigma,m}^\dagger c_{j,\sigma,m}
+  - \mu \sum_{i,\sigma} \sum_{m=1}^2 n_{i,\sigma,m}
+  + U\sum_i \sum_{m=1}^2 n_{i,\uparrow,m} n_{i,\downarrow, m}\\
+  - 2J_H \sum_i \vec S_{i,1} \vec S_{1,2}
+  + (U' - J_H/2) \sum_i (n_{i,\uparrow,1} + n_{i,\downarrow,1}) 
+    (n_{i,\uparrow,2} + n_{i,\downarrow,2}).
+  \end{multline*}
+  Here $i$, $j$ label the lattice sites; $m = 1$, $2$ is the orbital
+  and $\sigma$ the spin index. Thus, $c_{i,\sigma,m}^\dagger$ creates an
+  electron at site $i$ in orbital $m$ with spin $\sigma$.
+  As usual, $\mu$ represents the chemical potential with $n = c^\dagger c$
+  being the density operator.
+
+  For simplicity, it is easier to consider the cases for which there are two
+  orbitals on each lattice site.
+
+  Brief explanation of the model: $U$ and $U'$ are intra- and inter-orbital
+  Coulomb interactions; $J_H$ is the so-called Hund's rule coupling, which is a
+  collective result of both Coulomb repulsion and Pauli exclusion principle in
+  the atomic states. It is a ferromagnetic spin-spin interaction between
+  electrons on different orbitals. The last term is a constraint on the total
+  amplitudes of $U'$ and $J_H$, because they are competing against each other
+  under the energy-minimization principle.
+
+  Relevance of this model:
+  \begin{enumext}
+    \item It is closely related to twisted bilayer graphene at quarter filling,
+    which is experimentally found to be a ferromagnetic anomalous Hall
+    insulator, and is the parental state of the underlying fractional Chern
+    insulator states. There are clues suggesting it may be a strongly correlated
+    insulator, and this model with proper parameters could be the minimal model
+    to describe this $1/4$-filling state.
+    \item It could be the minimal model and parent state for multi-band 3d/4d
+    oxides such as \ce{Sr2RuO4}, which is famously a ferromagnetic Fermi liquid
+    and an interesting unconventional superconductor. Other similar compounds in
+    the same group, such as \ce{Sr3Ru2O7} can also be derived from this model
+    additional tuning (327 maybe approximated by a two-layer two-band model).
+    \item It is also potentially related to other 3d unconventional
+    superconductors with multiple active bands, include both iron pnictides and
+    chalcogenides and the newly discovered nickel-based family.
+  \end{enumext}
+  \begin{remark}[Expectation and hints.]
+    At exact 1/4-filling and sufficiently large-U, it must remain a Mott
+    insulator, but the second-order perturbation to energy will be verify
+    different from 1/2-filling; both spin and orbital-pseudo-spin will be
+    involved. Semi-classically, this is known as the Kugel-Khomskii model~
+    \emph{\fullcite{final1_kugel1982jahn}}.
+    \textbf{Note: your results need not be exactly reproducing this results.}
+  \end{remark}
+  Objectives:
+  \begin{enumext}
+    \item \textbf{Minimal I.} Obtain the second order perturbation to energy
+    in the large-U limit in some way. You can choose
+    \begin{enumext}
+      \item conventional quantum mechanical perturbation for two sites,
+      \item Schrieffer-Wolff transformation,
+      \item algebraic-dynamical method as I demonstrated for the single band
+      Hubbard model
+    \end{enumext}
+    \item \textbf{Minimal II.} Discuss the semi-classical ground state
+    configuration: Can you construct a Neel-state type product state? Make the
+    construction or discuss why you cannot. (This is open question already).
+    \item \textbf{Advanced.}
+    \begin{enumext}
+      \item Obtain the single particle Green's function on top of your
+      semi-classical ground state. Try to make reasonable approximations if too
+      complicated.
+      \item an you set up consistent equation(s) for important physical
+      quantities such as magnetization, orbital-magnetization (or polarization),
+      etc?
+      \item If you reached here, congratulations, we can start to write a paper.
+    \end{enumext}
+  \end{enumext}
+\end{problem}
+\begin{solution}
+
+\end{solution}
+\rule{\linewidth}{1pt}
+\newpage
+\begingroup
+\transparent{.15}
+\begin{problem}
+  Single band Hubbard model at HALF-filling with resonant valence bond
+  correlations. (on-going work)
+  In the lecture, we discussed how to solve for single particle Green's
+  functions as perturbation to a Neel product state. However, a more legitimate
+  calculation should be a degenerate perturbative calculation, realized by
+  starting with a parameterized superposition of the two-fold degenerate Neel
+  states. The superposition construction naturally introduces the $z$-component
+  of resonant valence bond, but not the transverse ($x$ \& $y$) components.
+
+  Objectives:
+  \begin{enumext}
+    \item \textbf{Minimal I.}
+    Write down the parameterized superposition of the two-fold degenerate Neel
+    states on square lattice; compute the unperturbed static correlation
+    functions, including single-particle (note now there is nonlocal
+    correlations), spin-spin and vertex-like ones, as functions of the
+    parameters.
+    \item \textbf{Minimal II.} Obtain the ``atomic'' limit solutions for single
+    particle GFs; compare them with the Neel state case.
+    \item \textbf{Advanced.}
+    \begin{enumext}
+      \item Perform the second order perturbation calculation for energy (i.e.
+      for the hopping term), you'd recover the superexchange magnetic energy in
+      its SU(2) form (note in Neel case, we only have the Ising form, since the
+      atomic state is always fully polarized); discuss if there is any
+      correction of the same order to the U-term? (Hint: you need to take a
+      third order time-derivative on GFs).
+      \item Try to derive the single particle GFs at involving the RVB
+      correlations; plot the spectral functions; check
+      with~\emph{\fullcite{final2_kurokawa2023unveiling}}.
+      \item Although we are working on solutions for the insulating phase,
+      recent experimental evidence suggests that, a complete clean system at
+      finite doping may be just a simple ``RVB'' metal with Fermi-liquid-like
+      Fermi pockets~\emph{\fullcite{final2_kurokawa2023unveiling}}.
+      If you have solve \#2, try just shift the chemical potential right across
+      the lower Hubbard band and focusing on this branch of dispersion (Hubbard
+      band).
+      \begin{enumext}
+        \item Write down its self-energy, and discuss its quasiparticle
+        life-time, is it Fermi-liquid-like?
+        \item Try to compute its superconductivity susceptibility:
+        \begin{enumext}
+          \item The bare particle-particle bubble;
+          \item The RPA form.
+        \end{enumext}
+        Do find superconductivity instability, i.e. divergence in the RPA form
+        solution? If you reach this point, come and talk to for our Nobel prize
+        winning paper.
+      \end{enumext}
+    \end{enumext}
+  \end{enumext}
+\end{problem}
+\endgroup
