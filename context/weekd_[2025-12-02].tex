@@ -25,9 +25,104 @@
 \end{paracol}
 \vspace{-12pt}
 \begin{solution}
+  For convenience, label the vertices, external Fermion momentum, photon
+  momenta, and internal Fermion momenta in the Feynman diagram.
+  \begin{center}
+    \begin{tikzpicture}[scale = 2]
+      \begin{feynhand}
+        \vertex (a) at (0,0) node at (a) [below] {$a$};
+        \vertex (b) at (1,0) node at (b) [below] {$b$};
+        \vertex (c) at (2,0) node at (c) [below] {$c$};
+        \vertex (d) at (3,0) node at (d) [below] {$d$};
+        \propag [fermion] (a) to [edge label' = $k_1$] (b);
+        \propag [fermion] (b) to [edge label' = $k_2$] (c);
+        \propag [fermion] (c) to [edge label' = $k_3$] (d);
+        \propag [photon, out = 90, in = 90] (a) to [edge label = $q_1$] (c);
+        \propag [photon, out = 90, in = 90] (b) to [edge label = $q_2$] (d);
+        \propag [anti fermion] (a) --++ (-1,.5) node [left] {$p$};
+        \propag [fermion] (d) --++ (1,.5) node [right] {$p$};
+      \end{feynhand}
+    \end{tikzpicture}
+  \end{center}
+  List the momentum conservations at the four vertices
+  \[
+    \begin{cases*}
+      p = k_1 + q_1,    & Vertex a,\\
+      k_1 = k_2 + q_2,  & Vertex b,\\
+      k_2 + q_1 = k_3,  & Vertex c,\\
+      k_3 + q_2 = p,    & Vertex d.
+    \end{cases*}
+  \]
+  Thus, we can obtain the internal Fermion momenta
+  \[
+    k_1 = p - q_1, \quad k_2 = p - q_1 - q_2, \quad k_3 = p - q_2.
+  \]
+  Applying the QED Feynman rules in Feynman gauge
+  \begin{enumext*}[columns = 8]
+    \item(2) Vertex factor: $-\iu\upe\gamma^\mu$.
+    \item(3) Fermion propagator:
+    $\frac{\iu(\slashed k + m)}{k^2 - m^2 + \iu\epsilon}$.
+    \item(3) Photon propagator: $-\frac{\iu g_{\mu\nu}}{q^2 + \iu\epsilon}$.
+  \end{enumext*}
+  THe self-energy $\Sigma(p)$ is defined such that the 1PI diagram contributes
+  to $-\iu\Sigma(p)$. Reading the diagram from a to d
+  \begin{multline*}
+    -\iu\Sigma(p) = \int \frac{\d^4q_1}{(2\pi)^4} \int \frac{\d^4q_2}{(2\pi)^4}
+    \cdot
+    (-\iu\upe\gamma^\alpha)
+    \frac{\iu(\slashed k_1 + m)}{k_1^2 - m^2 + \iu\epsilon}
+    \cdot
+    (-\iu\upe\gamma^\gamma)
+    \frac{\iu(\slashed k_2 + m)}{k_2^2 - m^2 + \iu\epsilon}\\
+    \cdot
+    (-\iu\upe\gamma^\beta)
+    \frac{\iu(\slashed k_3 + m)}{k_3^2 - m^2 + \iu\epsilon}
+    \cdot
+    (-\iu\upe\gamma^\delta)
+    \ab[-\frac{\iu g_{\alpha\beta}}{q_1^2 + \iu\epsilon}]
+    \cdot
+    \ab[-\frac{\iu g_{\gamma\delta}}{q_1^2 + \iu\epsilon}].
+  \end{multline*}
+  Simplifying the Expression
+  \begin{multline*}
+    \Sigma(p) = \iu \upe^4
+    \int \frac{\d^4q_1}{(2\pi)^4} \int \frac{\d^4q_2}{(2\pi)^4}
+    \frac{1}{q_1^2 + \iu\epsilon} \frac{1}{q_2^2 + \iu\epsilon}
+    \gamma^\alpha
+    \frac{\slashed p - \slashed q_1 + m}{(p - q_1)^2 - m^2 + \iu\epsilon}\\
+    \times \gamma^\gamma
+    \frac{\slashed p - \slashed q_1 - \slashed q_2 + m}
+      {(p - q_1 - q_2)^2 - m^2 + \iu\epsilon}
+    \gamma_\alpha
+    \frac{\slashed p - \slashed q_2 + m}
+      {(p - q_2)^2 - m^2 + \iu\epsilon}
+    \gamma_\gamma
+  \end{multline*}
+  We obtain the final expression for the crossed self-energy diagram.
 
+  The crossed second-order self-energy diagram does not contribute to a finite
+  quasiparticle lifetime at zero temperature: it has no imaginary part for an
+  on-shell fermion.
+  \begin{enumext}
+    \item In vacuum QED, an on-shell electron $p^2 = m^2$ cannot decay into an
+    electron plus two photons due to energy-momentum conservation. Any physical
+    cut of the diagram would require simultaneous on-shell conditions for two
+    massless photons and an intermediate fermion, which is kinematically
+    forbidden except for trivial configurations of measure zero in phase space.
+    \item In a zero-temperature Fermi liquid, the imaginary part of the
+    self-energy on the Fermi surface requires available phase space for
+    scattering. For this diagram, putting all three internal fermion lines
+    on-shell simultaneously is prohibited by Pauli blocking: the required
+    intermediate states involve transitions below the Fermi level, which are
+    forbidden at $T=0$. The phase space for such processes vanishes identically.
+  \end{enumext}
+  Thus, this diagram contributes only to the real part of the self-energy,
+  renormalizing the quasiparticle energy and effective mass, but does not induce
+  a finite lifetime. Any imaginary part would arise only at finite temperature
+  or for off-shell momenta, but for the standard on-shell condition at $T = 0$,
+  $\Im \Sigma(p) = 0$.
 \end{solution}
-\newpage
+
 \begin{problem}
   Identify each of the Feynman diagrams shown in the figure
   \begin{framed}
@@ -35,7 +130,7 @@
     \tikz [baseline = -.25em]
       \node [fill = red,    minimum width = 4em,
              draw, ellipse, minimum height = 2em] {$\Sigma$};
-    \enspace = \enspace
+    \, = \,
     \begin{tikzpicture}[baseline = -.25em]
       \begin{feynhand}
         \vertex (a) at (0,0);
@@ -43,7 +138,7 @@
         \propag [fermion] (a) to (b);
         \propag [photon, out = 90, in = 90] (a) to (b);
       \end{feynhand}
-    \end{tikzpicture} \enspace + \enspace
+    \end{tikzpicture} \, + \,
     \begin{tikzpicture}[baseline = -1cm - .25em]
       \begin{feynhand}
         \vertex (a) at (-.5,0);
@@ -54,7 +149,7 @@
         \vertex (d) at (0,-1);
         \propag [photon] ([yshift = -.3cm]c) to (d);
       \end{feynhand}
-    \end{tikzpicture} \enspace + \enspace
+    \end{tikzpicture} \, + \,
     \begin{tikzpicture}[baseline = -1cm - .25em]
       \begin{feynhand}
         \vertex (a) at (-.5,0);
@@ -69,7 +164,7 @@
         \propag [fermion] (e) to (f);
         \propag [photon, in = -90, out = -90] (e) to (f);
       \end{feynhand}
-    \end{tikzpicture} \enspace + \enspace
+    \end{tikzpicture} \, + \,
     \begin{tikzpicture}[baseline = -.25em]
     \begin{feynhand}
       \vertex (a) at (0,0);
@@ -83,7 +178,7 @@
       \propag [photon, out = 90, in = 90] (b) to (c);
     \end{feynhand}
   \end{tikzpicture}\\
-  + \enspace
+  + \,
   \begin{tikzpicture}[baseline = -2.3cm - .25em]
     \begin{feynhand}
       \vertex (a) at (-.5,0);
@@ -103,7 +198,7 @@
       \vertex (d) at (0,-1);
       \propag [photon] ([yshift = -.3cm]c) to (d);
     \end{feynhand}
-  \end{tikzpicture} \enspace + \enspace
+  \end{tikzpicture} \, + \,
     \begin{tikzpicture}[baseline = -1cm - .25em]
       \begin{feynhand}
         \vertex (a) at (-.5,0);
@@ -116,7 +211,7 @@
         \propag [photon, in = 180, out = 180] (a) to (0,.5);
         \propag [photon, in = 0, out = 0] (0,.5) to (b);
       \end{feynhand}
-    \end{tikzpicture} \enspace + \enspace
+    \end{tikzpicture} \, + \,
     \begin{tikzpicture}
       \begin{feynhand}
         \vertex (a) at (0,0);
@@ -129,7 +224,7 @@
         \propag [photon, out = 90, in = 90] (a) to (c);
         \propag [photon, out = 90, in = 90] (b) to (d);
       \end{feynhand}
-    \end{tikzpicture} \enspace + \enspace
+    \end{tikzpicture} \, + \,
     \begin{tikzpicture}[baseline = -1.5cm - .25em]
       \begin{feynhand}
         \vertex (a) at (-1,0);
@@ -163,7 +258,7 @@
     \tikz [baseline = -.25em]
       \node [fill = red,    minimum width = 4em,
              draw, ellipse, minimum height = 2em] {$\Sigma$};
-    \enspace = \enspace
+    \, = \,
     \begin{tikzpicture}[baseline = -.25em]
       \begin{feynhand}
         \vertex (a) at (0,0);
@@ -172,7 +267,7 @@
         \propag [fermion] ([yshift = -.6pt]a) to ([yshift = -.6pt]b);
         \propag [photon, out = 90, in = 90] (a) to (b);
       \end{feynhand}
-    \end{tikzpicture} \enspace + \enspace
+    \end{tikzpicture} \, + \,
     \begin{tikzpicture}[baseline = -1cm - .25em]
       \begin{feynhand}
         \vertex (a) at (-.5,0);
@@ -188,7 +283,7 @@
         \vertex (d) at (0,-1);
         \propag [photon] ([yshift = -.3cm]c) to (d);
       \end{feynhand}
-    \end{tikzpicture} \enspace + \enspace
+    \end{tikzpicture} \, + \,
     \begin{tikzpicture}
       \begin{feynhand}
         \vertex (a) at (0,0);
@@ -204,7 +299,7 @@
         \propag [photon, out = 90, in = 90] (a) to (c);
         \propag [photon, out = 90, in = 90] (b) to (d);
       \end{feynhand}
-    \end{tikzpicture} \enspace + \enspace
+    \end{tikzpicture} \, + \,
     \begin{tikzpicture}[baseline = -1.5cm - .25em]
       \begin{feynhand}
         \vertex (a) at (-1,0);
