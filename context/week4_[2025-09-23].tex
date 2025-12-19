@@ -18,13 +18,13 @@
 \end{problem}
 \begin{solution}\leavevmode
   \begin{enumext}[label = (\alph*)]
-    \item The Hamiltonian is  
+    \item The Hamiltonian is
     \[
       \hat H(t) = -\gamma \bm S \cdot \mathbf{B}(t)
     = -\gamma B_0 S_z - \gamma B_1\ab(S_x \cos \omega t + S_y \sin \omega t),
-    \]  
+    \]
     with $\bm S = \frac\hbar2 \bm \sigma$.
-    Denote $\hat H_0 = -\gamma B_0 S_z$ and 
+    Denote $\hat H_0 = -\gamma B_0 S_z$ and
     $\hat H_1(t) = -\gamma B_1\ab(S_x \cos \omega t + S_y \sin \omega t)$,
     we obtain
     \[
@@ -40,7 +40,7 @@
     with the BCH theory, using
     $e^{\iu\hat H_0 t/\hbar} S_\pm \upe^{-\iu\hat H_0 t/\hbar}
     = S_\pm \upe^{\mp \iu\omega_0 t}$, where $\omega_0 = \gamma B_0$,
-    we obtain  
+    we obtain
     \[
       \hat H_{1,I}(t) = -\frac{\gamma B_1}{2}
       \ab(S_+ \upe^{-\iu(\omega + \omega_0) t}
@@ -59,12 +59,12 @@
     = \Omega\ab(S_+ \upe^{-\iu\Delta t} + S_- \upe^{\iu\Delta t})
     = 2\Omega \upe^{-\iu\Delta t S_z} S_x \upe^{\iu\Delta t S_z}.
     \]
-    The time-evolution operator is  
+    The time-evolution operator is
     \[
       \hat U(t) = \mathcal T
       \exp\ab[ -\frac\iu\hbar \int_{-\infty}^t \hat H_{1,I}(t') \d t'].
     \]
-    Using the identity for time-ordered exponentials of this form, we find  
+    Using the identity for time-ordered exponentials of this form, we find
     \[
       \hat U(t) = \upe^{-\iu\Delta t S_z} \exp\ab[
                   -\frac\iu\hbar \ab(2\Omega S_x - \Delta S_z) t]
@@ -82,15 +82,15 @@
     \[
       H_{\text{eff}} = -\Omega_R S_x - \tilde{\Delta} S_z,
     \]
-    then  
+    then
     \[
       \hat U(t) = \upe^{-i\tilde{\Delta} t S_z} \upe^{-\iu H_{\text{eff}} t/\hbar}.
     \]
-    Since $\ket|\downarrow>$ is an eigenstate of $S_z$ with eigenvalue $-\hbar/2$,  
+    Since $\ket|\downarrow>$ is an eigenstate of $S_z$ with eigenvalue $-\hbar/2$,
     \[
     e^{-\iu\tilde{\Delta} t S_z} \ket|\downarrow> = \upe^{\iu\tilde{\Delta} t/2} \ket|\downarrow>,
-    \]  
-    so  
+    \]
+    so
     \[
     A(t) = \upe^{\iu\tilde{\Delta} t/2}
           \braket<\downarrow|\upe^{-\iu H_\text{eff} t/\hbar}|\downarrow>, \qq{and}
@@ -102,9 +102,9 @@
               \ab[\cos\ab(\frac{\lambda t}{2})
             - \iu\frac{\tilde{\Delta}}{\lambda} \sin\ab(\frac{\lambda t}{2})],
     \]
-    and we obtain the survival probability is  
+    and we obtain the survival probability is
     \[
-      P(t) = |A(t)|^2 
+      P(t) = |A(t)|^2
     = 1 - \frac{(\gamma B_1)^2}{(\gamma B_1)^2 + (\omega + \gamma B_0)^2}
       \sin^2\ab(\frac12 \sqrt{(\gamma B_1)^2 + (\omega + \gamma B_0)^2} t).
     \]
@@ -126,7 +126,7 @@
 \begin{solution}
   We just need to apply EOM to $a_{k\sigma}$ and $b_{qr}$.
   \begin{enumext}[label = (\alph*)]
-    \item Annihilation operator $a_{k\sigma}(t)$\\ 
+    \item Annihilation operator $a_{k\sigma}(t)$\\
     Calculate the commutator $[H_e, a_{k\sigma}]$ first
     \begin{align*}
       [H_e, a_{k\sigma}] & = \sum_{k',\sigma'}
