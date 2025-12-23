@@ -42,7 +42,6 @@ siunitx
 times
 underscore
 units
-#
 # For the `whatsnote` class
 amscls
 amsfonts
@@ -50,7 +49,9 @@ anyfontsize
 booktabs
 cancel
 caption
+bbm
 bbm-macros
+cm
 derivative
 duckuments
 enumext
@@ -75,9 +76,11 @@ nicematrix
 paracol
 pgfplots
 physics2
+ragged2e
 refcount
 relsize
 simplekv
+siunitx
 soul
 titlesec
 tools
@@ -89,5 +92,11 @@ zref
 #
 # For this repo
 whatsnote
-biblatex
 tikz-feynhand
+zref-clever
+simpler-wick
+slashed
+transparent
+dsfont
+doublestroke
+biblatex
