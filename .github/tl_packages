@@ -99,5 +99,6 @@ carlisle
 transparent
 doublestroke
 biblatex
-pgfopts
+biber
 biblatex-phys
+pgfopts
