@@ -732,3 +732,404 @@ This RVB correction can be factored out $[s_i^\dagger s_j^-, H_t + H_t]$.
 \begin{center}
   \includegraphics[width = \linewidth]{feynmann39.jpeg}
 \end{center}
+
+\section{Kondo Problem}
+
+Starting from the resistivity from impurity scattering: impurities on
+\ce{Au} films, \ce{Zn} films, \ce{Fe}, \ce{Ni}, \ce{Mn}, or \ce{Cu} films.
+\begin{paracol}{2}
+The behaviors of the resistivity can be tuned by the thickness of the films.
+\begin{enumext}
+  \item 2D: the resistivity usually goes up as $T$ decreases, and
+  sometimes diverge.
+  \item Or get stable at low $T$, or decreases.
+\end{enumext}
+Sometimes, $R(T)$ has a minimum, then $R(T) - R(0) \sim T^2$.
+\switchcolumn
+\begin{figure}[htbp]
+  \centering
+  \begin{tikzpicture}
+    \draw [->] (0,0) -- (3,0) node [below] {$T$};
+    \draw [->] (0,0) -- (0,3) node [left] {$R(T)$};
+    \draw [->] (3,1) -- (2,1) to [bend left] (.7,3);
+    \draw (3,1) -- (2,1) to [bend left] (.2,3);
+    \draw [rounded corners = 20pt] (3,1) -- (2,1) -- (1,1.5) -- (0,1.5);
+    \draw [rounded corners = 20pt] (3,1) -- (2,1) -- (0,.2);
+    \draw [rounded corners = 20pt, orange]
+      (3,2.8) -- (2.6,2.6) -- (1.5,.8) -- (.5,2.5) -- (0,3);
+    \fill [pattern = north east lines] (.5,2.3) -- (1.5,1) -- (2.5,2) -- cycle;
+  \end{tikzpicture}
+  \caption{$R(T) - T$}
+  \label{fig:kondo_temperature}
+\end{figure}
+\end{paracol}
+In magnetic impurity systems
+\begin{enumext}
+  \item Magnetic suscbility: $\psi_m$. Curie-weiss $T \ll T_F$.
+  $g$-factor: \~ isolated magnetic impurity atoms.
+
+  At very low $T$ (Kondo temperature $T_K$): the
+  magnetibility $\sim \log(T/T_k)$.
+  \[
+    \chi(0) \sim n_\text{imp}/T_k, \quad
+    \chi(T) - \chi(0) \sim -T^2.
+  \]
+  \item $R(T)$: The minimum $R(T) - R(0) \sim T^2$, $R(0) \sim$ unitairy
+  limit (maximum).
+  \item Entropy: specific heat in this case.
+  \[
+    \int \d \tau C_V(T)/T, \quad
+    S_e \sim \pdv S\mu \sim \pdv Sn
+  \]
+  Entropy release at $T_k$: Only include magnetic entropy.
+  For $H = -B_zS^z$, the magnetic density $\rho = \upe^{-S^z/k_BT}$
+  The spin
+  \[
+    \begin{cases*}
+      \ketbra|\uparrow><\uparrow| + \ket|\downarrow><\downarrow|\\
+      \ketbra|\uparrow><\uparrow| & Fermi sea: $f(\epsilon, T)$,
+      see the behavior $C_V/T \sim \nu$.
+    \end{cases*}
+  \]
+\end{enumext}
+The questions are
+\begin{enumext}
+  \item $T_k \ll T \ll T_F$, local momentum formation.
+  Basically, the local momentum formation is in the center
+  of~\ref{fig:kondo_temperature}.
+  \item Near the $T_k$: $\log(T/T_k)$, crossover.
+  \item Below $T_k$: local moment get ``screened''.
+  \item Why $R(T)$ can decrease, belongs to Kondo lattice.
+\end{enumext}
+
+\subsection{Local moment Formation (Charge pseudo-spin):
+  $\mathsf s$-$\mathsf d$ exchange}
+
+This case has to deal with \emph{Anderson impurity model},
+$T < \Delta E \sim U$.
+$s$ is the orbital, $d$ is the impurity.
+The Hamiltonian
+\[
+  \mathcal H = \sum_{k,\sigma} \epsilon_k n_{k\sigma}
+    + \sum_{k\sigma}(V(\bm k) C_{k\sigma}^\dagger f_\sigma
+    + V^*(k) f_\sigma^* c_{k\sigma})
+    + \underbrace{E_f n_f + U n_{f\uparrow} n_{f\downarrow}}_
+      \text{atomic}
+\]
+Atomic limit
+\[
+  \begin{cases}
+    \ket|f^2> & E(f^2) = 2E_f + U,\\
+    \ket|f^0> & 0,\\
+    \ket|f'\uparrow>,\ \ket|f'\downarrow> &
+    E_f.
+  \end{cases}
+\]
+\begin{paracol}{2}
+Transformation between states
+\[
+  \Delta E = \frac U2 \pm (E_f + \frac U2).
+\]
+$U$-interaction should be
+\[
+  \frac U2 > \ab|E_f + \frac U2|
+\]
+Using the half-$U$ approximation for convenience to deal with.
+Doubly occupied $\uparrow\downarrow$: Valence fluctuation kondo.
+\switchcolumn \centering
+\begin{tikzpicture}
+  \draw [->] (-2.5,0) -- (3,0) node [below] {$U$}
+   node [above] at (1.5,0) {Local moment};
+  \draw [->] (0,-2) -- (0,2) node [left] {$E_f + \frac U2$};
+  \draw (2.5,2) -- (0,0) -- (2.5,-2);
+  \fill [pattern = north east lines] (2.5,2) -- (0,0) -- (2.5,-2);
+  \node [above] at (-1,0) {$f^0 = f^2i$};
+  \node [below] at (-1,0) {Charge Kondo};
+\end{tikzpicture}
+\end{paracol}
+From SWT, ``integrate out'', ``renormalization
+the Hamiltonian becomes
+\[
+  H = \sum \epsilon_k n_{k\sigma} + J_k \vec S_{i=0} \cdot \vec S,\quad
+  \vec S_b = c_{0\alpha}^\dagger \bm \sigma_{\alpha\beta} \hat c_{0\beta},
+  \quad \vec s = f_\alpha^* \bm \sigma_{\alpha\beta} f_\beta, \quad J_k = V
+\]
+At the impurity, it has two electrons.
+
+\subsection{Kondo's solution to $R$ minimum}
+
+\paragraph{Resistivity \& scattering theory}
+
+\begin{example}[$T$-matrix]
+  The Green function
+  \[
+    G = G_0 + G_0 \hat T G, \quad
+    T = \frac{V}{1 - G_0V}, \quad
+    \begin{tikzpicture}[baseline = -3pt]
+      \begin{feynhand}
+        \propag [fermion] (0,1pt) to (1,1pt);
+        \propag [fermion] (0,-1pt) to (1,-1pt);
+        \propag [fermion] (1,0) node {$\times$} to (2,0);
+      \end{feynhand}
+    \end{tikzpicture} +
+    \begin{tikzpicture}[baseline = -3pt]
+      \begin{feynhand}
+        \propag [fermion] (0,0) to (1,0) node {$\times$};
+        \propag [fermion] (1,0) to (2,0) node {$\times$};
+        \propag [fermion] (2,0) to (3,0);
+      \end{feynhand}
+    \end{tikzpicture} \cdots
+  \]
+  which can be expressed in a Feynman diagram. One can obtain
+  \[
+    G = \frac{G_0}{1 - G_0T}
+      = \frac{1}{G_0^{-1} - G_0TG_0^{-1}}\\
+      \xlongequal{G_0^{-1}=\omega-\epsilon_k}
+        \frac{1}{\omega - \epsilon_k - \Sigma} = \frac1{\omega - \epsilon_k^*}
+      + \iu\frac\hbar2 \Sigma^{-1}(k,\omega)
+  \]
+  The imagine part
+  \[
+    \Im\Sigma(k,\epsilon_k) = C_\text{impurity density}
+    \Im(\braket<k|\hat T(\epsilon_k)|k>) = -C_\text{imp} \frac{k}{2m} \sigma(k)
+  \]
+  The $\sigma(k)$ here is not conductivity, it is a cross-sectioin.
+  The relaxation time
+  \[
+    \tau^{-1}(k) = c_\text{imp} v_k \sigma(k)
+  \]
+  In the Boltzmann equation, the relaxation time approximation
+  \[
+    \frac1{\tau(k)} = 2\pi C_\text{imp}
+    \int \d k' |T_{kk'}|^2 \delta(\epsilon(k) \epsilon(k')) (1 - \cos\theta')
+  = \bm k \cdot \bm k'
+  \]
+  Scattering phase shift enhance the back scattering, cause Anderson
+  localization.
+\end{example}
+
+\paragraph{Linear response \& Kondo formula}
+
+\[
+  \frac{\braket<\bm j(\omega, T, \bm E)>}{\bm E} \bigg|_{\bm E \to 0} = [\sigma]
+\]
+where $\bm E$ is not parallel to $\bm j$. Then,
+\[
+  [\sigma] \bm E = \bm j,\quad [\sigma] = \begin{pmatrix}
+    \sigma_{xx} & \sigma_{xy}\\
+    \sigma_{yx} & \sigma_{yy}
+  \end{pmatrix}
+\]
+with $\sigma_{xy} = -\sigma_{yx}$. The microscopic
+\[
+  \pdv\rho t - \nabla\cdot \bm j = 0, \quad
+  \pdv{\hat \rho}t = \iu[H,\hat \rho], \quad
+  \pdv{\hat \rho_c}t = \iu[H_0, \sum_\sigma n_{iu\sigma}]
+\]
+\begin{paracol}{2}
+One can calculate
+\begin{align*}
+    \bm j & = \sum \pdif{\bm k} \epsilon_k c_k^\dagger c_k
+  = \braket<\pdif{\bm k} \epsilon_k c_k^\dagger c_k>, \\
+    \fdv{j_\alpha}{E^b} &
+  = \fdv*{\braket<\pdif a\epsilon_k c_k^\dagger c_k>}{E^b}
+  = \fdv*{\sum_k \pdif a\epsilon_k G[k,\omega]}{E^b}\\
+& = \braket<\bm j_a; \bm j_b(1 + \Gamma \cdots)>
+\end{align*}
+\switchcolumn \centering
+\begin{tikzpicture}
+  \begin{feynhand}
+    \vertex (a) at (0,0);
+    \vertex (b) at (2,0);
+    \propag [fermion] (a) to[in = 105, out = 75]
+     node [near end, above] {$c_k$}
+     node [near start, above] {$c_k^\dagger$} (b);
+    \propag [fermion] (b) to[in = -75, out = -105]
+     node [near start, below] {$c_k^\dagger$}
+     node [near end, below] {$c_k$} (a);
+    \node [left]  at (a) {$\nu_a = \pdif{k_a}\epsilon_k$};
+    \node [right] at (b) {$\nu_b = \pdif{k_b}\epsilon_k$};
+    \fill [pattern = north east lines] (1.6,.5) -- (1.6,-.5) -- (2,0) -- cycle;
+  \end{feynhand}
+\end{tikzpicture}
+\end{paracol}
+\[
+  J_k \vec S_0 \cdot \vec s_f = J_k^z s_0^z s_f^z
++ J_z^+ (s_0^+s_f^- + S_0^- s_f^+)
+\]
+SU(2): Anisotropy can tune/control the process. We only need to compute
+\[
+  \braket<k',\uparrow|T(\epsilon^+)|k,\uparrow>_{(2)}
+\]
+to the second order. In diagram
+\begin{center}
+  \begin{minipage}{.48\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{feynhand}
+        \propag[fermion] (-1.5,1) node [left] {$k\uparrow$} to (-.5,0)
+         to [in = 75, out = 105] node [above] {$k_2\downarrow$} (.5,0)
+         to (1.5,1) node [right] {$k'\uparrow$};
+        \propag [chasca] (-1.5,0) to node [below] {$\downarrow$} (-.5,0);
+        \propag [chasca] (-.5,0) to node [below] {$\uparrow$} (.5,0);
+        \propag [chasca] (.5,0) to node [below] {$\downarrow$} (+1.5,0);
+      \end{feynhand}
+    \end{tikzpicture}
+  \end{minipage}
+  \hspace*\fill
+  \begin{minipage}{.48\linewidth}
+    \centering
+    \begin{tikzpicture}
+      \begin{feynhand}
+        \propag [fermion] (-1.5,1) to [out = 0, in = 120]
+         node [near start, above] {$k\uparrow$} (.5,0);
+        \propag [fermion] (-.5,0) to [out = 60, in = 180]
+         node [near end, above] {$k'\uparrow$} (1.5,1);
+        \propag [fermion] (-.5,0) to [out = 90, in = 90]
+         node [below] {$k_2\downarrow$} (.5,0);
+        \propag [chasca] (-1.5,0) to node [below] {$\uparrow$} (-.5,0);
+        \propag [antsca] (-.5,0) node [below] {$s^-$} to (.5,0);
+        \propag [chasca] (.5,0) node [below] {$s^+$} to
+         node [below] {$\uparrow$} (+1.5,0);
+      \end{feynhand}
+    \end{tikzpicture}
+  \end{minipage}
+\end{center}
+\[
+  g(\epsilon)
+= \frac1{N_s} \sum_k \frac{f(\epsilon_0)}{\epsilon_k - \epsilon - \iu S}; \quad
+  \tau^{-1}(k) \propto \frac{c_\text{imp}}{\epsilon_F}
+    [1 - 2J(g(\epsilon_k) + g^*(\epsilon_k))]
+\]
+The resistance
+\[
+  R_\text{imp}^\text{spin}
+= \frac{3\pi m T^2s(s + 1)}{2\upe^2\epsilon_F^*}
+  (1 - 4J\rho_0(\epsilon_F) \ln(k_BT/D))
+\]
+For $R(T) = aT^5 + c_\text{imp}R_0 - c_\text{imp} R_1 \ln(k_BT/D)$,
+the functional derivative
+\[
+  \fdv{R(T)}T = 0, \Rightarrow T_{\min}
+= \ab(\frac{R_1}{5a})^{1/5} c_\text{imp}^{1/5}
+\]
+
+\subsection{Logarithms divergence in observables of finite $\mathsf T$}
+
+\begin{center}
+  \begin{tikzpicture}
+    \begin{feynhand}
+      \propag [fermion] (-1,.5) to [out = -90, in = -90] (1,.5);
+      \propag [fermion] (1,.5)  to [out = 90, in = 90] (3,.5);
+      \propag [fermion] (3,.5)  to [out = -90, in = -90] (5,.5);
+      \propag [fermion] (5,.5)  to [out = 90, in = 90] (7,.5);
+    \end{feynhand}
+    \begin{feynhand}
+      \propag [chasca] (-1,.25) to [out = 90, in = 90] (1,.25);
+      \propag [chasca] (1,.25) to [out = -90, in = -90] (3,.25);
+      \propag [chasca] (3,.25) to [out = 90, in = 90] (5,.25);
+      \propag [chasca] (5,.25) to [out = -90, in = -90] (7,.25);
+    \end{feynhand}
+  \end{tikzpicture}
+\end{center}
+\begin{gather}
+  C_{\nu,\text{imp}} \sim \frac{1}{(1 + 2J\rho_0\ln(k_BT/D))^4}\\
+  S_\text{imp} \sim k_B\ln(2s + 1)
+    - \frac1{(1 + 2J\rho_0(\epsilon_F)\ln(k_BT/D))^3},\\
+  R_\text{imp} = \frac{R_c}{2}
+    \ab(1 - \frac{\ln T/T_k}{((\ln(T/T_k))^2 + \pi^2 s(s + 1))^{1/2}})
+\end{gather}
+$k_BT_k \sim D\upe^{-\frac12 J_k\rho_0}$.
+
+\paragraph{Analysis Kondo exchange}
+
+\[
+  J_k \vec S_0 \cdot \vec s \to \sum_{i = x,u,z} J_i S_0^i s^i
+\]
+contribute to energy
+\begin{equation}
+  \sum_i \braket<J_i S_0^i s^i>_{(a),(b)}
+= \sum s_{ab}^k s_{\alpha\beta}^k
+  \ab(\frac12 J(T) \sum\frac{J_iJ_j}{t^2} |\epsilon_{ijk}|^2)
+\end{equation}
+From which we can obtain
+\[
+  J_k + \delta J_k = \braket<\quad>
+= J_k + \frac1{2\pi} \frac\Gamma{t^2} \ln \frac WT \sum_{ij} J_i J_j
+  |\epsilon_{ijk}|^2
+\]
+The components
+\[
+  \delta J_x = \frac{\Gamma}{2t^2}\ln\frac WT J_yJ_z,\quad
+  \delta J_y = \frac{\Gamma}{2t^2}\ln\frac WT J_zJ_x,\quad
+  \delta J_z = \frac{\Gamma}{2t^2}\ln\frac WT J_xJ_y.
+\]
+For $J_x = J_y = J_z$, then
+\[
+  \delta J = \frac{\Gamma}{\pi t^2} J^2 \ln \frac W{T_k}, \quad
+  T_k = W\exp\ab(-\frac{\pi t^2}{\Gamma J}).
+\]
+\paragraph{Anderson's poorman's scaling}
+
+The functionals $J_z[W(\lambda)]$, $J_+[W(\lambda)]$: $W(\lambda) = W/\lambda$.
+\[
+  J_z[W(\lambda)] = J_z[W] + \frac\Gamma{\pi t^2} J_+^2[W] \ln\lambda,\quad
+  J_+[\quad] = J_+[W] + \frac\Gamma{\pi t^2} J_+z2[\quad] J_z[\quad],
+\]
+where $\lambda = \upe^5$, $\odv{j_z(s)}/s = 2J_+^2[s]$,
+$\odv{J_+}s = 2j_+(s)j_z(s)$, $J \sim \frac1{T_1 - T_k}$.
+
+\subsection{Strong coupling limit}
+
+\[
+  H_+ = \sum_{k,\sigma} \epsilon_k n_{k\sigma},\quad
+  H_k = J_k \vec S_0 \cdot \vec s.
+\]
+For the new $T \to 0$, $\ket|\Psi_{0,H_t}>
+  = \fbox{\tikz[baseline = -.25cm]{\begin{feynhand}
+    \vertex [NWblob] at (2,0) {};
+  \end{feynhand}}}$.
+\[
+  \delta H_t = \sum_k \delta f(\epsilon_k) \epsilon_k n_k
+= \sum_{k_F} \delta(k - k_F) \delta\epsilon_k c_{k\sigma}^\dagger c_{k\sigma}
+\]
+where $\delta(k - k_F) \sim \delta\epsilon$,
+$\delta\epsilon_k \sim \frac1m (k - k_F)$.
+$\delta\epsilon \ll J_k$, $\delta\epsilon\rho_0 \Leftrightarrow J_k$.
+So, the unperturbed Hamiltonian should be
+\[
+  \tilde H_0 = J_k \vec S \cdot \vec s
+  \begin{cases*}
+    \ket|\uparrow\uparrow>, \ket|\uparrow\downarrow> + \ket|\downarrow\uparrow>,
+    \ket|\downarrow>, & Triplet: $E > 0$\\
+    \ket|\uparrow\downarrow> - \ket|\downarrow\uparrow> & Singlet: $-E < 0$.
+  \end{cases*}
+\]
+Then, its derivative
+\[
+  \delta H_t = \sum_{k\in k_F} \delta \epsilon_k c_k^\dagger c_k,
+  \quad \delta\epsilon_k \sim \frac{(k - k_F)k_F}{m^*}.
+\]
+\[
+  \vec s_0 = c_{0\alpha}^\dagger \sigma_{\alpha\beta} c_{0\beta}
+= \sum_k c_{k\alpha}^\dagger \sigma_{\alpha\beta} c_{k\beta}
+\]
+with $\delta H_t$ as pert.
+THese calculations are called the scattering problem with a bound state:
+Fano resonance Kondo.
+\begin{enumerate}
+  \item $T_k \ll T \ll T_f$: week coupling limit, the ground state
+  $\ket|\uparrow>$, $J_k \vec S_0 \cdot \vec S$.
+  \item $T \sim T_k$: near the strong coupling limit, the ground state
+  $\braket<\vec S_0 \cdot \vec S>(T)$: Kondo singlet formation.
+\end{enumerate}
+Finally, from the ground state of $T \sim T_k$, we get the saturate
+unitary limit.
+\begin{center}
+  \includegraphics[width = \linewidth]{feynmann40}
+\end{center}
+\vfill
+\begin{framed}
+  \centering \scshape
+  Congratulations! U have reach the terminal of this course!
+\end{framed}
