@@ -1,0 +1,248 @@
+% !TeX root = ../main.tex
+
+\section*{Homework \#12 [2025-11-25]}
+
+\begin{problem}[Time-independent version of Wick's theorem]
+  Make the canonical transformation to particles and holes for fermions
+  $c_{k\lambda} = \theta(k - k_F) a_{k\lambda}
+                + \theta(k_F - k) b_{-k\lambda}^\dagger$.
+  By applying Wick's theorem, prove the relation
+  \begin{multline*}
+    c_1^\dagger c_2^\dagger c_4c_3
+  = \mathcal N(c_1^\dagger c_2^\dagger c_4c_3) + \theta(k_F - k_2)
+   [\delta_{24}\mathcal  N(c_1^\dagger c_3)
+  - \delta_{23}\mathcal N(c_1^\dagger c_4)]\\
+  + \theta(k_F - k_1) [\delta_{13}\mathcal N(c_2^\dagger c_4)
+  - \delta_{14}\mathcal N(c_2^\dagger c_3)]
+  + \theta(k_F - k_1) \theta(k_F - k_2)
+    [\delta_{13}\delta_{24} - \delta_{14}\delta_{23}],
+  \end{multline*}
+  where the normal-ordered products on the right side now refer to the new
+  particle and hole operators, and the subscripts indicate the quantum
+  numbers $(k, \lambda)$.
+\end{problem}
+\begin{solution}
+\begin{proof}
+  Let $c_i \equiv c_{k_i\lambda_i}$ be fermion annihilation operators relative
+  to the physical vacuum, and let $\ket|0>$ be the Fermi sea filled up to $k_F$.
+  The contraction is defined as
+  \[
+    \wick{\c1c_i^\dagger \c1c_j} \equiv \braket<0|c_i^\dagger c_j|0>
+  = \delta_{ij} \theta(k_F - k_i),
+  \]
+  Apply Wick's theorem
+  \begin{multline*}
+    c_1^\dagger c_2^\dagger c_4 c_3
+  = \mathcal N(c_1^\dagger c_2^\dagger c_4 c_3)
+  + \sum_\text{Single contractions}
+    (-1)^\sigma (\text{contraction}) \\
+    \times (\text{Normal ordered remainder})
+  + \sum_\text{Double contractions} (-1)^\sigma
+    (\text{Product of contractions})
+  \end{multline*}
+  to the product of operators to expand it into a sum of
+  all possible contractions. The single contractions are listed as follows
+  \begin{enumext}[columns = 2]
+    \item $(c_1^\dagger, c_4) = (-1)^1 \delta_{14}\theta(k_F - k_1)
+          :c_2^\dagger c_3:$
+    \item $(c_1^\dagger, c_3) = (-1)^2 \delta_{13}\theta(k_F - k_1)
+          :c_2^\dagger c_4:$
+    \item $(c_2^\dagger, c_4) = (-1)^2 \delta_{24}\theta(k_F - k_2)
+          :c_1^\dagger c_3:$
+    \item $(c_2^\dagger, c_3) = (-1)^3 \delta_{23}\theta(k_F - k_2)
+          :c_1^\dagger c_4:$
+  \end{enumext}
+  The double-contraction terms are listed as follows
+  \begin{enumext}
+    \item $(c_1^\dagger,c_4; c_2^\dagger,c_3)
+    = (-1)^1 \delta_{14}\theta(k_F - k_1) \delta_{23}\theta(k_F - k_2)$.
+    \item $(c_1^\dagger,c_3; c_2^\dagger,c_4)
+    = (-1)^2 \delta_{13}\theta(k_F - k_1) \delta_{24}\theta(k_F - k_2)$.
+  \end{enumext}
+  Collecting all terms, we can obtain
+  \begin{multline*}
+    c_1^\dagger c_2^\dagger c_4 c_3
+  = \mathcal N(c_1^\dagger c_2^\dagger c_4 c_3)\\
+  + (-1)^1 \delta_{14}\theta(k_F - k_1) :c_2^\dagger c_3:
+  + (-1)^2 \delta_{13}\theta(k_F - k_1) :c_2^\dagger c_4:\\
+  + (-1)^2 \delta_{24}\theta(k_F - k_2) :c_1^\dagger c_3:
+  + (-1)^3 \delta_{23}\theta(k_F - k_2) :c_1^\dagger c_4:\\
+  + (-1)^1 \delta_{14}\theta(k_F - k_1) \delta_{23}\theta(k_F - k_2)
+  + (-1)^2 \delta_{13}\theta(k_F - k_1) \delta_{24}\theta(k_F - k_2),
+  \end{multline*}
+  and one can get the same expression by combining the same terms.
+  \qedhere
+\end{proof}
+\end{solution}
+
+\begin{problem}
+  Consider a gas of particles with interaction
+  \[
+    \hat V = \frac12 \sum_{\bm k k' \bm q \sigma \sigma'} V_q
+      c_{\bm k - \bm q\sigma}^\dagger
+      c_{\bm k + \bm q\sigma'}^\dagger
+      c_{\bm k' \sigma'} c_{\bm k\sigma}.
+  \]
+  \begin{enumext}
+      \item Let $\ket|\phi>$ represent a filled Fermi sea, i.e., the ground
+      state of the non-interacting problem. Use Wick's theorem to evaluate an
+      expression for the expectation value of the interaction
+      energy $\braket<\phi|\hat V|\phi>$ in the non-interacting ground state.
+      Give a physical interpretation of the two terms that arise and draw the
+      corresponding Feynman diagrams.
+      \item Suppose $\ket|\tilde\phi>$ is the full ground state of the
+      interacting
+      system. If we add the interaction
+      energy $\braket<\tilde\phi|\hat V|\tilde\phi>$ to the non-interacting
+      ground-state energy, do we obtain the full ground-state energy? Please
+      explain your answer.
+      \item Draw the Feynman diagrams corresponding to the second-order
+      corrections to the ground-state energy. Without calculation, write out each
+      diagram in terms of the electron propagators and interaction $V_q$, being
+      careful about minus signs and overall prefactors.
+      (If you do not fully understand the question,
+      \citep[see][\#7.4.1]{1_coleman2015introduction}.)
+    \end{enumext}
+  \end{problem}
+  \begin{solution}\leavevmode
+  \begin{enumext}
+    \item Using Wick's theorem
+    \[
+      \braket<\phi|\hat V|\phi>
+    = \frac12 \sum_{\substack{\bm k, \bm k' \\ \bm q, \sigma, \sigma'}} V_q
+      \ab(
+        \braket<c_{\bm k + \bm q,\sigma}^\dagger c_{\bm k,\sigma}>
+        \braket<c_{\bm k' - \bm q,\sigma'}^\dagger c_{\bm k',\sigma'}>
+      - \braket<c_{\bm k + \bm q,\sigma}^\dagger c_{\bm k',\sigma'}>
+        \braket<c_{\bm k' - \bm q,\sigma'}^\dagger c_{\bm k,\sigma}>).
+    \]
+    With $\braket<c_{\bm p,\tau}^\dagger c_{\bm p',\tau'}>
+        = \delta_{\bm p,\bm p'}\delta_{\tau,\tau'} n_{\bm p,\tau}$ and
+    $n_{\bm p,\tau} = \Theta(k_F - |\bm p|)$, we obtain
+    \[
+      \braket<\phi|\hat V|\phi>
+    = \frac12 V_0 \ab(\sum_{\bm k,\sigma} n_{\bm k,\sigma} )^2
+    - \frac12 \sum_{\bm k, \bm k', \sigma} V_{\bm k' - \bm k}
+      n_{\bm k,\sigma} n_{\bm k',\sigma}.
+    \]
+    \paragraph{Interruption}
+    \begin{enumext}
+      \item The first term is the \emph{Hartree (direct) energy}, representing
+      the classical electrostatic interaction of the average electron density.
+      \begin{center}
+        \begin{minipage}{.45\linewidth}
+          \centering
+          \begin{tikzpicture}
+            \begin{feynhand}
+              \vertex (a) at (-1,0);
+              \vertex (b) at (1,0);
+              \propag [antfer] (a) arc (-180:0:1);
+              \propag [antfer] (b) arc (0:180:1);
+              \propag[bos] (a) to (b);
+            \end{feynhand}
+          \end{tikzpicture}
+        \end{minipage}
+        \hfill
+        \begin{minipage}{.45\linewidth}
+          \centering
+          \begin{tikzpicture}
+            \begin{feynhand}
+              \vertex (a) at (-1,0);
+              \vertex (b) at (1,0);
+              \propag [fer] (a) to [out = 90, in = 90] (b);
+              \propag [fer] (b) to [out = -120, in = -60, looseness = 2] (a);
+              \propag[bos]  ([shift = (-60:.25)]a) to [out = 30, in = 150]
+                            ([shift = (-120:.25)]b);
+            \end{feynhand}
+          \end{tikzpicture}
+        \end{minipage}
+      \end{center}
+      \item The second term is the \emph{Fock (exchange) energy}, arising from
+      the antisymmetry of the wavefunction, which reduces the energy because
+      identical spins avoid each other.
+    \end{enumext}
+    \item After adding the interaction energy
+    $\braket<\tilde\phi|\hat V|\tilde\phi>$ to the non-interacting ground-state
+    energy $E_0^{\text{non-int}}$ does not yield the full ground-state
+    energy $E$. The full Hamiltonian is $\hat H = \hat H_0 + \hat V$ now, and by
+    definition, the full ground-state energy becomes
+    \[
+      E = \braket<\tilde\phi|\hat H|\tilde\phi>
+        = \braket<\tilde\phi|\hat H_0|\tilde\phi>
+        + \braket<\tilde\phi|\hat V|\tilde\phi>.
+    \]
+    The first term $\braket<\tilde\phi|\hat H_0|\tilde\phi>$ is not equal to
+    $E_0^{\text{non-int}} = \braket<\phi|\hat H_0|\phi>$ because the interacting
+    ground state $\ket|\tilde\phi>$ differs from the non-interacting one
+    $\ket|\phi>$. Thus, the full ground-state energy includes not only the
+    interaction energy, but also the change in kinetic and potential energy due
+    to the modified wavefunction.
+    \item Using the zero-temperature Feynman rules in momentum space, each
+    diagram can be expressed in terms of the interaction $V_q$, and the
+    non-interacting electron propagator
+    \[
+      G_0(k) = G_0(\bm k, i\omega) = \frac1{i\omega - \epsilon_{\bm k} - \mu}
+    \]
+    Each diagram of order $n$ carries a factor $\frac1{2^n n!}$,
+    so the overall factor for the second order is $\frac18$, and each closed
+    fermion loop gives a factor $(-1)$. The symmetry factor for each diagram
+    is 1.
+    \begin{center}
+      \begin{minipage}{.45\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{feynhand}
+          \vertex (a) at (-.5,0);
+          \vertex (b) at (.5,0);
+          \propag [antfer] (a) arc (-180:0:.5);
+          \propag [antfer] (b) arc (0:180:.5);
+          \vertex (c) at (-.5,-1.25);
+          \vertex (d) at (.5,-1.25);
+          \propag [antfer] (c) arc (-180:0:.5);
+          \propag [antfer] (d) arc (0:180:.5);
+          \propag[bos] (a) to (c);
+          \propag[bos] (b) to (d);
+        \end{feynhand}
+      \end{tikzpicture}
+      \end{minipage}
+      \hfill
+      \begin{minipage}{.45\textwidth}
+      \centering
+      \begin{tikzpicture}
+        \begin{feynhand}
+          \vertex (a) at (-1,0);
+          \vertex (b) at (1,0);
+          \vertex (c) at (-1,-2);
+          \vertex (d) at (1,-2);
+          \propag [fer] (c) to (a);
+          \propag [fer] (a) to (d);
+          \propag [fer] (d) to (b);
+          \propag [fer] (b) to (c);
+          \propag [bos] (c) to (a);
+          \propag [bos] (d) to (b);
+        \end{feynhand}
+      \end{tikzpicture}
+      \end{minipage}
+    \end{center}
+    \paragraph{Direct diagram}
+    This diagram has 2 fermion loops with a sign is $(-1)^2 = +$.
+    The contribution is
+    \[
+      E^{(2)}_\text{direct}
+    = \frac18 \int \frac{\d^4q}{(2\pi)^4} V_q^2 [\Pi_0(q)], \qq{and}
+      \Pi_0(q) = \int \frac{\d^4\mathbf k}{(2\pi)^4}\, G_0(k)\, G_0(k + q),
+    \]
+    where $\d^4\mathbf k = \d\bm k \d\omega$ and $\Pi_0(q)$ is the
+    non-interacting polarization bubble.
+    \paragraph{Exchange diagram}
+    This diagram has 1 fermion loop with a sign is $(-1)^1 = -$.
+    The contribution is
+    \[
+      E^{(2)}_\text{exchange}
+    = -\frac18 \int \frac{\d^4\mathbf q}{(2\pi)^4}
+      \frac{\d^4\mathbf k}{(2\pi)^4} \frac{\mathbf d^4k'}{(2\pi)^4}
+      V_q V_{|\bm k - \bm k' + \bm q|}
+      G_0(k) G_0(k + q) G_0(k') G_0(k' + q).
+    \]
+  \end{enumext}
+\end{solution}

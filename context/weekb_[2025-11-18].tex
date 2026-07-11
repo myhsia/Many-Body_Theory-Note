@@ -1,0 +1,214 @@
+% !TeX root = ../main.tex
+
+\section*{Homework \#11 [2025-11-18]}
+
+\begin{problem}[label = prob.11.1]\leavevmode
+  \begin{enumext}
+    \item Write the time-ordered product
+    \[
+      \mathcal T_\epsilon \{a_{k\sigma}(t_1)a_{l\sigma'}^\dagger(t_2)
+                            a_{m\sigma}(t_3) a_{n\sigma'}^\dagger(t_3)\}
+    \]
+    in terms of normal products and suitable contractions.
+    \item Express the expectation value of the time-ordered product in part
+    (a) in the ground state $\ket|\eta_0>$ of the unperturbed system in terms
+    of products of the free causal Green's functions.
+  \end{enumext}
+\end{problem}
+\begin{solution}\leavevmode
+  \begin{enumext}
+    \item We define the time-ordered operators
+    \[
+      A = a_{k\sigma}(t_1), \quad
+      B^\dagger = a_{l\sigma'}^\dagger(t_2), \quad
+      C = a_{m\sigma}(t_3),\quad
+      D^\dagger = a_{n\sigma'}^\dagger(t_3)
+    \]
+    Using Wick's theorem for fermions, the time-ordered product can be
+    written as
+    \begin{multline*}
+      \mathcal T\{AB^\dagger CD^\dagger\}
+  = \mathcal N\{AB^\dagger CD^\dagger\} +
+        \sum_\text{Single contractions}
+        (-1)^\sigma (\text{contraction}) \\
+        \times (\text{Normal ordered remainder})
+      + \sum_\text{Double contractions} (-1)^\sigma
+        (\text{Product of contractions})
+    \end{multline*}
+    where the contraction between two operators, $\hat c_1$ and $\hat c_2$,
+    for example, is defined as the expectation value of the time-ordered product
+    in reference vacuum
+    \[
+      \wick{\c1{\hat c}_1\c1{\hat c}_2}
+        \equiv \braket<T_\epsilon\{\hat c_1\hat c_2\}>_0.
+    \]
+    Note that the contractions $\wick{\c1A\c1C}$
+    and $\wick{\c1B^\dagger\c1D^\dagger}$ vanish
+    since they are all annihilation operators or creation operators.
+    The non-zero contractions are listed as follows
+    \begin{enumext}
+      \item Single contraction $(1,2)$:
+      $(1,2,3,4) \to (1,2,3,4)$ contains two swaps: the sign is $(-1)^0 = +$.
+      \item Single contraction $(3,4)$:
+      $(1,2,3,4) \to (3,4,1,2)$ contains two swaps: the sign is $(-1)^4 = +$.
+      \item Single contraction $(1,4)$:
+      $(1,2,3,4) \to (1,4,2,3)$ contains two swaps: the sign is $(-1)^2 = +$.
+      \item Single contraction $(2,3)$:
+      $(1,2,3,4) \to (2,3,1,4)$ contains two swaps: the sign is $(-1)^2 = +$.
+      \item Double contraction $(1,2)$ and $(3,4)$:
+      the sign is $(-1)^{0+4} = +$.
+      \item Double contraction $(1,4)$ and $(2,3)$:
+      the sign is $(-1)^{2+2} = +$.
+    \end{enumext}
+    where $A$, $B$, $C$, $D$ have already defined before.
+    Substitute the contraction into the Wick's theorem
+    \begin{multline*}
+      \mathcal T_\epsilon\{AB^\dagger CD^\dagger\}
+    = :AB^\dagger CD^\dagger:
+    + \wick{\c1A\c1B^\dagger}:CD^\dagger:
+    + \wick{\c1C\c1D^\dagger} :AB^\dagger:\\
+    + \wick{\c1A\c1D^\dagger} :B^\dagger C:
+    + \wick{\c1B^\dagger\c1C} :AD^\dagger:
+    + \wick{\c1A\c1B^\dagger\c1C\c1D^\dagger}
+    + \wick{\c1A\c1D^\dagger\c1B^\dagger\c1C}
+    \end{multline*}
+    Restoring the explicit indices
+    \begin{align*}
+      \mathcal T_\epsilon \{a_{k\sigma}(t_1) a_{l\sigma'}^\dagger(t_2)
+                            a_{m\sigma}(t_3) a_{n\sigma'}^\dagger(t_3)\}
+  = &:a_{k\sigma}(t_1) a_{l\sigma'}^\dagger(t_2)
+      a_{m\sigma}(t_3) a_{n\sigma'}^\dagger(t_3):\\
+    & + \braket<\mathcal T_\epsilon\{
+          a_{k\sigma}(t_1) a_{l\sigma'}^\dagger(t_2)\}>_0
+         :a_{m\sigma(t_3)} a_{n\sigma'}^\dagger(t_3):\\
+    & + \braket<\mathcal T_\epsilon\{
+          a_{m\sigma(t_3)} a_{n\sigma'}^\dagger(t_3)\}>_0
+         :a_{k\sigma}(t_1) a_{l\sigma'}^\dagger(t_2):\\
+    & + \braket<\mathcal T_\epsilon\{
+          a_{k\sigma}(t_1) a_{n\sigma'}^\dagger(t_3)\}>_0
+         :a_{l\sigma'}^\dagger(t_2) a_{m\sigma(t_3)}:\\
+    & + \braket<\mathcal T_\epsilon\{
+          a_{l\sigma'}^\dagger(t_2)a_{m\sigma}(t_3)\}>_0
+         :a_{k\sigma}(t_1) a_{n\sigma'}^\dagger(t_3):\\
+    & + \braket<\mathcal T_\epsilon\{
+          a_{k\sigma}(t_1) a_{l\sigma'}^\dagger(t_2)\}>_0
+        \braket<\mathcal T_\epsilon\{
+          a_{m\sigma}(t_3) a_{n\sigma'}^\dagger(t_3)\}>_0\\
+    & + \braket<\mathcal T_\epsilon\{
+          a_{k\sigma}(t_1) a_{n\sigma'}^\dagger(t_3)\}>_0
+        \braket<\mathcal T_\epsilon\{
+          a_{l\sigma'}^\dagger(t_2) a_{m\sigma}(t_3)\}>_0
+    \end{align*}
+    \item The expectation value in the ground state $\ket|\eta_0>$ is
+    contributed by the \emph{fully contracted terms}, i.e., the last two double
+    contraction terms. Using the definition of the free causal Green's function
+    \[
+      \wick{\c1 a_{k\sigma}(t)\c1 a_{l\sigma'}^\dagger(t')}
+    = \iu G_{k\sigma,l\sigma'}(t,t')
+    = \braket<\eta_0|\mathcal T_\epsilon
+        \{a_{k\sigma}(t) a_{l\sigma}^\dagger(t')\}|\eta_0>
+    \]
+    To uniform the order of the annihilation and creation operators, using
+    the ``anti-commutation relation''
+    \[
+      \wick{\c1 a_{l\sigma'}^\dagger(t_2) \c1a_{m\sigma}(t_3)}
+    = -\iu G_{m\sigma,l\sigma'}(t_3,t_2).
+    \]
+    Therefore, the expectation value
+    \begin{align*}
+      \braket<\eta_0|\mathcal T_\epsilon\{AB^\dagger CD^\dagger\}|\eta_0> &
+    = [\iu G_{k\sigma,l\sigma'}^0(t_1,t_2)]
+      [\iu G_{m\sigma,n\sigma'}^0(t_3,t_3)] +
+      [\iu G_{k\sigma,n\sigma'}^0(t_1,t_3)]
+      [-\iu G_{m\sigma,l\sigma'}^0(t_3,t_2)]\\
+  & = -G_{k\sigma,l\sigma'}^0(t_1,t_2)
+      G_{m\sigma,n\sigma'}^0(t_3,t_3)
+    + G_{k\sigma,n\sigma'}^0(t_1,t_3)
+      G_{m\sigma,l\sigma'}^0(t_3,t_2).
+    \end{align*}
+  \end{enumext}
+\end{solution}
+
+\begin{problem}
+  Evaluate explicitly the expectation value of the time-ordered product in
+  part 1 of \Autoref{prob.11.1} in the ground state $\eta\ket|\eta_0>$ of the
+  unperturbed system for the special case $k = l = m = n$, $\sigma = \sigma'$
+  for
+  \begin{enumext}[columns = 2]
+    \item $t_1 > t_2 > t_3$,
+    \item $t_1 > t_3 > t_2$.
+  \end{enumext}
+  Check the results by direct calculation of the expectation values, i.e.,
+  without using Wick's theorem.
+\end{problem}
+\begin{solution}
+  Since $k = l = m = n$, $\sigma = \sigma'$, so the labels of the fermion
+  operators make no sense here. Calculate an identity first. Consider a very
+  common situation: The phase factors of the fermion operators are
+  time-dependent, i.e.,
+  \[
+    a(t) = \upe^{-\iu\int_{-\infty}^t \d t'\epsilon(t')} a(0), \qq{and}
+    a^\dagger(t') = \upe^{\iu\int_{-\infty}^t \d t'\epsilon(t')} a^\dagger(0).
+  \]
+  Denote $f(\epsilon^0) = \braket<a(0) a^\dagger(0)>$,
+  we can express the double time expectation
+  \[
+    \braket<c(t) c^\dagger(t')> = \braket<c^\dagger(t') c(t)>
+  = f(\epsilon^0)\upe^{-\iu\int_{t'}^t \d t_1 \epsilon(t_1)}
+  \]
+  The following calculations mainly use the anti-commutation relations
+  \[
+    aa^\dagger = 1 = a^\dagger a = 1 - \hat n, \quad
+    a^\dagger aa^\dagger a = a^\dagger a
+  \]
+  \begin{enumext}
+    \item Expand the time-order operators first, then substitute the identity
+    \begin{align*}
+      \braket<\eta_0|\mathcal T_\epsilon\{AB^\dagger CD^\dagger\}|\eta_0>
+  & = \braket<a(t_1) a^\dagger(t_2)>
+      \braket<a(t_3) a^\dagger(t_3)>
+    + \braket<a(t_1) a^\dagger(t_3)>
+     \braket<a^\dagger(t_2) a(t_3)>\\
+  & = (1 - n)^2
+      \upe^{-\iu\int_{t_2}^{t_1} \d t'\epsilon(t')}
+      \upe^{-\iu\int_{t_3}^{t_3} \d t'\epsilon(t')}
+    + (1 - n) \cdot n
+      \upe^{-\iu\int_{t_3}^{t_1} \d t'\epsilon(t')}
+      \upe^{-\iu\int_{t_2}^{t_3} \d t'\epsilon(t')}\\
+  & = (1 - n) \upe^{-\iu\int_{t_2}^{t_1} \d t'\epsilon(t')}
+      \xlongequal{\pdv\epsilon/t = 0} (1 - n)
+      \upe^{-\iu\epsilon(t_1 - t_2)}
+    \end{align*}
+    By direct calculation, starting from the original expression. Obviously,
+    they have the same phase factor
+    \begin{align*}
+      \braket<
+        \mathcal T_\epsilon\{a(t_1) a^\dagger(t_2) a(t_3) a^\dagger(t_3)\}>_0
+      \big|_{t_1>t_2>t_3}
+  & = \braket<a a^\dagger a a^\dagger>
+      \upe^{-\iu\int_{t_2}^{t_1} \d t'\epsilon(t')}
+    = \braket<(1 - a^\dagger a)(1 - a^\dagger a)>
+      \upe^{-\iu\int_{t_2}^{t_1} \d t'\epsilon(t')}\\
+  & = (1 - 2aa^\dagger + a^\dagger a)
+      \upe^{-\iu\int_{t_2}^{t_1} \d t'\epsilon(t')}
+    = (n - 1) \upe^{-\iu\int_{t_2}^{t_1} \d t'\epsilon(t')}
+    \end{align*}
+    The result matches.
+    \item Different from (a), the last term will have an extra minus sign
+    \begin{multline*}
+      \braket<\eta_0|\mathcal T_\epsilon\{AB^\dagger CD^\dagger\}|\eta_0>
+    = \braket<a(t_1) a^\dagger(t_2)>
+      \braket<a(t_3) a^\dagger(t_3)>
+    + \braket<a(t_1) a^\dagger(t_3)>
+      \braket<-a(t_3) a^\dagger(t_2)>\\
+    = \upe^{-\iu\int_{t_2}^{t_1} \d t'\epsilon(t')}(
+      \braket<aa^\dagger> \braket<aa^\dagger>
+    - \braket<aa^\dagger> \braket<aa^\dagger>) = 0
+    \end{multline*}
+    In the direct calculation,
+    $\braket<\mathcal T\{a(t_1)a^\dagger(t_2)a(t_3)a^\dagger(t_3)\}>$
+    gives $\braket<a(t_1)a(t_3)a^\dagger(t_3)a^\dagger(t_2)>$.
+    The term $a(t_1)a(t_3)$ must make the whole expression vanish.
+    The result matches.
+  \end{enumext}
+\end{solution}

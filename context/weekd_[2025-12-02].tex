@@ -1,0 +1,391 @@
+% !TeX root = ../main.tex
+
+\section*{Homework \#13 [2025-12-02]}
+
+\begin{paracol}{2}
+  \begin{problem}
+    Write down the expression for the contribution to self-energy by the
+    above diagram. Discuss whether this diagram contributes to a finite
+    quasiparticle lifetime, i.e., whether it has an imaginary part?
+  \end{problem}
+  \switchcolumn \centering
+  \begin{tikzpicture}
+    \begin{feynhand}
+      \vertex (a) at (0,0);
+      \vertex (b) at (1,0);
+      \vertex (c) at (2,0);
+      \vertex (d) at (3,0);
+      \propag [fermion] (a) to (b);
+      \propag [fermion] (b) to (c);
+      \propag [fermion] (c) to (d);
+      \propag [photon, out = 90, in = 90] (a) to (c);
+      \propag [photon, out = 90, in = 90] (b) to (d);
+    \end{feynhand}
+  \end{tikzpicture}
+\end{paracol}
+\vspace{-12pt}
+\begin{solution}
+  For convenience, label the vertices, external Fermion momentum, photon
+  momenta, and internal Fermion momenta in the Feynman diagram.
+  \begin{center}
+    \begin{tikzpicture}[scale = 2]
+      \begin{feynhand}
+        \vertex (a) at (0,0) node at (a) [below] {$a$};
+        \vertex (b) at (1,0) node at (b) [below] {$b$};
+        \vertex (c) at (2,0) node at (c) [below] {$c$};
+        \vertex (d) at (3,0) node at (d) [below] {$d$};
+        \propag [fermion] (a) to [edge label' = $k_1$] (b);
+        \propag [fermion] (b) to [edge label' = $k_2$] (c);
+        \propag [fermion] (c) to [edge label' = $k_3$] (d);
+        \propag [photon, out = 90, in = 90] (a) to [edge label = $q_1$] (c);
+        \propag [photon, out = 90, in = 90] (b) to [edge label = $q_2$] (d);
+        \propag [anti fermion] (a) --++ (-1,.5) node [left] {$p$};
+        \propag [fermion] (d) --++ (1,.5) node [right] {$p$};
+      \end{feynhand}
+    \end{tikzpicture}
+  \end{center}
+  List the momentum conservations at the four vertices
+  \[
+    \begin{cases*}
+      p = k_1 + q_1,    & Vertex a,\\
+      k_1 = k_2 + q_2,  & Vertex b,\\
+      k_2 + q_1 = k_3,  & Vertex c,\\
+      k_3 + q_2 = p,    & Vertex d.
+    \end{cases*}
+  \]
+  Thus, we can obtain the internal Fermion momenta
+  \[
+    k_1 = p - q_1, \quad k_2 = p - q_1 - q_2, \quad k_3 = p - q_2.
+  \]
+  Applying the QED Feynman rules in Feynman gauge
+  \begin{enumext*}[columns = 8]
+    \item(2) Vertex factor: $-\iu\upe\gamma^\mu$.
+    \item(3) Fermion propagator:
+    $\frac{\iu(\slashed k + m)}{k^2 - m^2 + \iu\epsilon}$.
+    \item(3) Photon propagator: $-\frac{\iu g_{\mu\nu}}{q^2 + \iu\epsilon}$.
+  \end{enumext*}
+  THe self-energy $\Sigma(p)$ is defined such that the 1PI diagram contributes
+  to $-\iu\Sigma(p)$. Reading the diagram from a to d
+  \begin{multline*}
+    -\iu\Sigma(p) = \int \frac{\d^4q_1}{(2\pi)^4} \int \frac{\d^4q_2}{(2\pi)^4}
+    \cdot
+    (-\iu\upe\gamma^\alpha)
+    \frac{\iu(\slashed k_1 + m)}{k_1^2 - m^2 + \iu\epsilon}
+    \cdot
+    (-\iu\upe\gamma^\gamma)
+    \frac{\iu(\slashed k_2 + m)}{k_2^2 - m^2 + \iu\epsilon}\\
+    \cdot
+    (-\iu\upe\gamma^\beta)
+    \frac{\iu(\slashed k_3 + m)}{k_3^2 - m^2 + \iu\epsilon}
+    \cdot
+    (-\iu\upe\gamma^\delta)
+    \ab[-\frac{\iu g_{\alpha\beta}}{q_1^2 + \iu\epsilon}]
+    \cdot
+    \ab[-\frac{\iu g_{\gamma\delta}}{q_1^2 + \iu\epsilon}].
+  \end{multline*}
+  Simplifying the Expression
+  \begin{multline*}
+    \Sigma(p) = \iu \upe^4
+    \int \frac{\d^4q_1}{(2\pi)^4} \int \frac{\d^4q_2}{(2\pi)^4}
+    \frac{1}{q_1^2 + \iu\epsilon} \frac{1}{q_2^2 + \iu\epsilon}
+    \gamma^\alpha
+    \frac{\slashed p - \slashed q_1 + m}{(p - q_1)^2 - m^2 + \iu\epsilon}\\
+    \times \gamma^\gamma
+    \frac{\slashed p - \slashed q_1 - \slashed q_2 + m}
+      {(p - q_1 - q_2)^2 - m^2 + \iu\epsilon}
+    \gamma_\alpha
+    \frac{\slashed p - \slashed q_2 + m}
+      {(p - q_2)^2 - m^2 + \iu\epsilon}
+    \gamma_\gamma
+  \end{multline*}
+  We obtain the final expression for the crossed self-energy diagram.
+
+  The crossed second-order self-energy diagram does not contribute to a finite
+  quasiparticle lifetime at zero temperature: it has no imaginary part for an
+  on-shell fermion.
+  \begin{enumext}
+    \item In vacuum QED, an on-shell electron $p^2 = m^2$ cannot decay into an
+    electron plus two photons due to energy-momentum conservation. Any physical
+    cut of the diagram would require simultaneous on-shell conditions for two
+    massless photons and an intermediate fermion, which is kinematically
+    forbidden except for trivial configurations of measure zero in phase space.
+    \item In a zero-temperature Fermi liquid, the imaginary part of the
+    self-energy on the Fermi surface requires available phase space for
+    scattering. For this diagram, putting all three internal fermion lines
+    on-shell simultaneously is prohibited by Pauli blocking: the required
+    intermediate states involve transitions below the Fermi level, which are
+    forbidden at $T=0$. The phase space for such processes vanishes identically.
+  \end{enumext}
+  Thus, this diagram contributes only to the real part of the self-energy,
+  renormalizing the quasiparticle energy and effective mass, but does not induce
+  a finite lifetime. Any imaginary part would arise only at finite temperature
+  or for off-shell momenta, but for the standard on-shell condition at $T = 0$,
+  $\Im \Sigma(p) = 0$.
+\end{solution}
+
+\begin{problem}
+  Identify each of the Feynman diagrams shown in the figure
+  \begin{framed}
+  \begin{multline*}
+    \tikz [baseline = -.25em]
+      \node [fill = red,    minimum width = 4em,
+             draw, ellipse, minimum height = 2em] {$\Sigma$};
+    \, = \,
+    \begin{tikzpicture}[baseline = -.25em]
+      \begin{feynhand}
+        \vertex (a) at (0,0);
+        \vertex (b) at (1.6,0);
+        \propag [fermion] (a) to (b);
+        \propag [photon, out = 90, in = 90] (a) to (b);
+      \end{feynhand}
+    \end{tikzpicture} \, + \,
+    \begin{tikzpicture}[baseline = -1cm - .25em]
+      \begin{feynhand}
+        \vertex (a) at (-.5,0);
+        \vertex (b) at (.5,0);
+        \propag [out = -90, in = -90] (a) to (b)
+         coordinate [midway] (c);
+        \propag [fermion, out = 90, in = 90] (b) to (a);
+        \vertex (d) at (0,-1);
+        \propag [photon] ([yshift = -.3cm]c) to (d);
+      \end{feynhand}
+    \end{tikzpicture} \, + \,
+    \begin{tikzpicture}[baseline = -1cm - .25em]
+      \begin{feynhand}
+        \vertex (a) at (-.5,0);
+        \vertex (b) at (.5,0);
+        \propag [out = -90, in = -90] (a) to (b)
+         coordinate [midway] (c);
+        \propag [fermion, out = 90, in = 90] (b) to (a);
+        \vertex (d) at (0,-1);
+        \propag [photon] ([yshift = -.3cm]c) to (d);
+        \vertex (e) at ([xshift = -.8cm]d);
+        \vertex (f) at ([xshift = +.8cm]d);
+        \propag [fermion] (e) to (f);
+        \propag [photon, in = -90, out = -90] (e) to (f);
+      \end{feynhand}
+    \end{tikzpicture} \, + \,
+    \begin{tikzpicture}[baseline = -.25em]
+    \begin{feynhand}
+      \vertex (a) at (0,0);
+      \vertex (b) at (1,0);
+      \vertex (c) at (2,0);
+      \vertex (d) at (3,0);
+      \propag [fermion] (a) to (b);
+      \propag [fermion] (b) to (c);
+      \propag [fermion] (c) to (d);
+      \propag [photon, out = 90, in = 90] (a) to (d);
+      \propag [photon, out = 90, in = 90] (b) to (c);
+    \end{feynhand}
+  \end{tikzpicture}\\
+  + \,
+  \begin{tikzpicture}[baseline = -2.3cm - .25em]
+    \begin{feynhand}
+      \vertex (a) at (-.5,0);
+      \vertex (b) at (.5,0);
+      \propag [out = -90, in = -90] (a) to (b)
+       coordinate [midway] (c);
+      \propag [fermion, out = 90, in = 90] (b) to (a);
+      \vertex (d) at (0,-1);
+      \propag [photon] ([yshift = -.3cm]c) to (d);
+    \end{feynhand}
+    \begin{feynhand}[shift = {(.2,-1.3)}]
+      \vertex (a) at (-.5,0);
+      \vertex (b) at (.5,0);
+      \propag [out = -90, in = -90] (a) to (b)
+       coordinate [midway] (c);
+      \propag [fermion, out = 90, in = 90] (b) to (a);
+      \vertex (d) at (0,-1);
+      \propag [photon] ([yshift = -.3cm]c) to (d);
+    \end{feynhand}
+  \end{tikzpicture} \, + \,
+    \begin{tikzpicture}[baseline = -1cm - .25em]
+      \begin{feynhand}
+        \vertex (a) at (-.5,0);
+        \vertex (b) at (.5,0);
+        \propag [out = -90, in = -90] (a) to (b)
+         coordinate [midway] (c);
+        \propag [anti fermion, out = 90, in = 90] (b) to (a);
+        \vertex (d) at (0,-1);
+        \propag [photon] ([yshift = -.3cm]c) to (d);
+        \propag [photon, in = 180, out = 180] (a) to (0,.5);
+        \propag [photon, in = 0, out = 0] (0,.5) to (b);
+      \end{feynhand}
+    \end{tikzpicture} \, + \,
+    \begin{tikzpicture}
+      \begin{feynhand}
+        \vertex (a) at (0,0);
+        \vertex (b) at (1,0);
+        \vertex (c) at (2,0);
+        \vertex (d) at (3,0);
+        \propag [fermion] (a) to (b);
+        \propag [fermion] (b) to (c);
+        \propag [fermion] (c) to (d);
+        \propag [photon, out = 90, in = 90] (a) to (c);
+        \propag [photon, out = 90, in = 90] (b) to (d);
+      \end{feynhand}
+    \end{tikzpicture} \, + \,
+    \begin{tikzpicture}[baseline = -1.5cm - .25em]
+      \begin{feynhand}
+        \vertex (a) at (-1,0);
+        \vertex (b) at (1,0);
+        \propag [out = -90, in = -90] (a) to (b)
+         coordinate [midway] (c);
+        \propag [fermion, out = 90, in = 90] (b) to (a);
+        \vertex (c) at (-.6,-.5);
+        \vertex (d) at (.6,-.5);
+        \vertex (e) at ([yshift = -1cm]c);
+        \vertex (f) at ([yshift = -1cm]d);
+        \propag [photon] (c) to (e);
+        \propag [photon] (d) to (f);
+        \propag [fermion] (e) to (f);
+      \end{feynhand}
+    \end{tikzpicture}
+  \end{multline*}
+  \end{framed}
+  with its corresponding skeleton diagram (where there are just four skeleton
+  diagrams); Illustrate why it corresponds to that skeleton diagram.
+\end{problem}
+\begin{solution}
+  The non-skeleton diagram represents the self-energy $\Sigma$ using bare
+  propagators $G_0$, including all diagrams up to second order, and those that
+  are reducible: self-energy corrections on internal lines.
+  \begin{framed}
+  \centering
+  To distinguish the two figures, double lines are used to describe the full
+  propagator $G$, contrary to $G_0$.
+  \[
+    \tikz [baseline = -.25em]
+      \node [fill = red,    minimum width = 4em,
+             draw, ellipse, minimum height = 2em] {$\Sigma$};
+    \, = \,
+    \begin{tikzpicture}[baseline = -.25em]
+      \begin{feynhand}
+        \vertex (a) at (0,0);
+        \vertex (b) at (1.6,0);
+        \propag [fermion] ([yshift = +.6pt]a) to ([yshift = +.6pt]b);
+        \propag [fermion] ([yshift = -.6pt]a) to ([yshift = -.6pt]b);
+        \propag [photon, out = 90, in = 90] (a) to (b);
+      \end{feynhand}
+    \end{tikzpicture} \, + \,
+    \begin{tikzpicture}[baseline = -1cm - .25em]
+      \begin{feynhand}
+        \vertex (a) at (-.5,0);
+        \vertex (b) at (.5,0);
+        \propag [out = -90, in = -90]
+                ([xshift = +.6pt]a) to ([xshift = -.6pt]b);
+        \propag [out = -90, in = -90] ([xshift = -.6pt]a) to ([xshift = +.6pt]b)
+          coordinate [midway] (c);
+        \propag [fermion, out = 90, in = 90]
+                ([xshift = -.6pt]b) to ([xshift = +.6pt]a);
+        \propag [fermion, out = 90, in = 90]
+                ([xshift = +.6pt]b) to ([xshift = -.6pt]a);
+        \vertex (d) at (0,-1);
+        \propag [photon] ([yshift = -.3cm]c) to (d);
+      \end{feynhand}
+    \end{tikzpicture} \, + \,
+    \begin{tikzpicture}
+      \begin{feynhand}
+        \vertex (a) at (0,0);
+        \vertex (b) at (1,0);
+        \vertex (c) at (2,0);
+        \vertex (d) at (3,0);
+        \propag [fermion] ([yshift = +.6pt]a) to ([yshift = +.6pt]b);
+        \propag [fermion] ([yshift = -.6pt]a) to ([yshift = -.6pt]b);
+        \propag [fermion] ([yshift = +.6pt]b) to ([yshift = +.6pt]c);
+        \propag [fermion] ([yshift = -.6pt]b) to ([yshift = -.6pt]c);
+        \propag [fermion] ([yshift = +.6pt]c) to ([yshift = +.6pt]d);
+        \propag [fermion] ([yshift = -.6pt]c) to ([yshift = -.6pt]d);
+        \propag [photon, out = 90, in = 90] (a) to (c);
+        \propag [photon, out = 90, in = 90] (b) to (d);
+      \end{feynhand}
+    \end{tikzpicture} \, + \,
+    \begin{tikzpicture}[baseline = -1.5cm - .25em]
+      \begin{feynhand}
+        \vertex (a) at (-1,0);
+        \vertex (b) at (1,0);
+        \propag [out = -90, in = -90]
+                ([xshift = +.6pt]a) to ([xshift = -.6pt]b);
+        \propag [out = -90, in = -90] ([xshift = -.6pt]a) to ([xshift = +.6pt]b)
+         coordinate [midway] (c);
+        \propag [fermion, out = 90, in = 90]
+                ([xshift = +.6pt]b) to ([xshift = -.6pt]a);
+        \propag [fermion, out = 90, in = 90]
+                ([xshift = -.6pt]b) to ([xshift = +.6pt]a);
+        \vertex (c) at (-.6,-.5);
+        \vertex (d) at (.6,-.5);
+        \vertex (e) at ([yshift = -1cm]c);
+        \vertex (f) at ([yshift = -1cm]d);
+        \propag [photon] (c) to (e);
+        \propag [photon] (d) to (f);
+        \propag [fermion] ([yshift = +.6pt]e) to ([yshift = +.6pt]f);
+        \propag [fermion] ([yshift = -.6pt]e) to ([yshift = -.6pt]f);
+      \end{feynhand}
+    \end{tikzpicture}
+  \]
+  \end{framed}
+  In contrast, the skeleton expansion defines $\Sigma$ as a functional of the
+  fully interacting Green's function $G$. By using $G$, the expansion includes
+  only the topologically irreducible diagrams.
+
+  \paragraph{Identification for the 4 skeleton diagrams}
+  \begin{enumext}
+    \item \textbf{Fock (Exchange) Diagram} corresponding to the following 2
+    terms in the non-skeleton diagram.
+    \begin{enumext}[wrap-label = \underline{Term #1}:, label = \arabic*,
+                    list-indent = 0pt]
+      \setcounter{enumXii}{0}
+      \item \textsc{Direct Correspondence.} This is the bare 1st-order
+      Fock (Exchange) diagram, which defines the basic topology of the skeleton;
+      and the
+      \setcounter{enumXii}{6}
+      \item \textsc{Reducible Diagram (by deduction).} This diagram is absorbed
+      into this skeleton diagram. While its exact internal
+      structure is complex, it is a second-order diagram that is topologically
+      equivalent to the Fock diagram once its internal lines are treated as
+      fully interacting $G$ lines, thereby implicitly summing this type of
+      correction.
+    \end{enumext}
+    \item \textbf{Hartree (Tadpole) Diagram} corresponding to the following 4
+    terms in the non-skeleton diagram.
+    \begin{enumext}[wrap-label = \underline{Term #1}:, label = \arabic*,
+                    list-indent = 0pt]
+      \setcounter{enumXii}{1}
+      \item \textsc{Direct Correspondence.} This is the bare 1st-order Hartree
+      (Tadpole) diagram, which defines the basic topology of the skeleton.
+      \setcounter{enumXii}{2}
+      \item \textsc{Reducible Diagram.} This is obtained by inserting a
+      1st-order self-energy correction (a Fock-like semi-circle) into the
+      internal Green's function line of the Tadpole diagram. This correction is
+      automatically included when the internal line in this skeleton diagram is
+      defined as $G$.
+      \setcounter{enumXii}{4}
+      \item \textsc{Reducible Diagram.} This is a more complex version of a
+      correction to the Tadpole diagram's internal line. It is absorbed into
+      this skeleton diagram.
+      \setcounter{enumXii}{5}
+      \item \textsc{Reducible Diagram.} This is obtained by inserting a
+      1st-order self-energy correction (a Hartree-like tadpole) into the
+      internal Green's function line of the Tadpole diagram. It is absorbed into
+      this skeleton diagram.
+    \end{enumext}
+    \item \textbf{Second-Order Sunset Diagram} corresponding to the 4th term in
+    the non-skeleton diagram: \textsc{Direct Correspondence}. This is the bare
+    second-order diagram with the Sunset (or double-semi-circle) topology. It is
+    topologically irreducible that cannot be reduced to a 1st-order self-energy
+    by cutting a single internal line, and it is retained as a distinct
+    skeleton.
+    \item \textbf{Second-Order Crossed/Double-Tadpole Diagram} corresponding to
+    the 8th term in the non-skeleton diagram: \textsc{Direct Correspondence}.
+    This is the bare second-order diagram with the Double-Tadpole (or hourglass)
+    topology. It is also topologically irreducible and is retained as a distinct
+    skeleton.
+  \end{enumext}
+  \paragraph{Illustration for the correspondence}
+  The reducible diagrams (Terms 3, 5, 6, and 7) in the non-skeleton diagram are
+  the four ``self-energy corrections of the internal Green's functions''. By
+  using the fully interacting propagator G in the skeleton expansion, these
+  corrections are effectively summed up to all orders and accounted for by the
+  first two skeletons. In order words, reorganizing the perturbation series into
+  a self-consistent formulation.
+\end{solution}
